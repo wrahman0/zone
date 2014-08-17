@@ -31,17 +31,9 @@ public class Outlet {
 	//ie. if the location json is for REVelation cafe, then the menu json 
 	//should be the weekly menu for REVelation. This is the assumption that
 	//is made. 
-	public Outlet(JSONObject location, JSONObject menu){
-
-		Log.e(MainActivity.TAG, "Location: " + location.toString());
-		if (menu != null){
-			Log.e(MainActivity.TAG, "Menu: " + location.toString());	
-		}
-		
-	}
 	
 	public Outlet(JSONObject location){
-		Log.e(MainActivity.TAG, "Location: " + location.toString());
+//		Log.e(MainActivity.TAG, "Location: " + location.toString());
 		
 		try {
 			this.outlet_id = location.getInt("outlet_id");
@@ -150,7 +142,7 @@ public class Outlet {
 	
 	//This method adds the menu if there is any for the current Outlet. Check using the outlet id
 	public void getMenuFromJSON(JSONArray dailyMenuList){
-		Log.e(MainActivity.TAG, "Generating Menu from the JSON: " + dailyMenuList.toString());
+//		Log.e(MainActivity.TAG, "Generating Menu from the JSON: " + dailyMenuList.toString());
 		
 		//TODO:2.Parse the menu information
 		//TODO:2a.First find the correct menu json
@@ -169,7 +161,7 @@ public class Outlet {
 		
 		//TODO:2b.Insert the menu information
 		if(menu!=null){
-			Log.i(MainActivity.TAG, "Corresponding menu for " + this.outlet_name + " is " + menu.toString());
+//			Log.i(MainActivity.TAG, "Corresponding menu for " + this.outlet_name + " is " + menu.toString());
 			weeklyMenuByDay = new ArrayList<DailySpecials>();
 			
 			try {

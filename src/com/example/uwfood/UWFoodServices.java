@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class UWFoodServices {
 
@@ -20,6 +21,7 @@ public class UWFoodServices {
 	private JSONObject menu_response;
 	private JSONObject location_response;
 	
+	private ResponseHolder responseHolder;
 	private ParserResponse listener;
 
 	public UWFoodServices(ParserResponse listener){
@@ -46,6 +48,14 @@ public class UWFoodServices {
 		this.location_response = response;
 	}
 	
+	public ResponseHolder getResponseHolder() {
+		return responseHolder;
+	}
+
+	public void setResponseHolder(ResponseHolder responseHolder) {
+		this.responseHolder = responseHolder;
+	}
+
 	private class MyAsyncTask extends AsyncTask<String, String, String>{
 		@Override
 		protected String doInBackground(String... args) {
@@ -95,10 +105,15 @@ public class UWFoodServices {
 			
 			//Build the outlet objects and store them into an arraylist. Get the outlet objects through the get methods
 			//Separate the menu and location objects by different outlets
-			ResponseHolder responseHolder = new ResponseHolder(getLocationResponse(),getMenuResponse());
-			
-			listener.onParseComplete(getMenuResponse());
-			
+			if (getLocationResponse()!=null && getMenuResponse()!=null){
+				Log.i(MainActivity.TAG, "CREATING RESPONSE HOLDER");
+				setResponseHolder(new ResponseHolder(getLocationResponse(),getMenuResponse()));
+				listener.onParseComplete(getResponseHolder());	
+			}else{
+				Log.e(MainActivity.TAG, "Response Holder is null");
+				setResponseHolder(null);
+				listener.onParseComplete(null);	
+			}
 		}
 	}
 

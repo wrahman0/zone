@@ -19,6 +19,7 @@ public class ResponseHolder {
 	
 	public ResponseHolder(JSONObject location, JSONObject menu){ //location and menu json is the whole json that is returned by waterloo servers
 		
+		//Get Location Data
 		try {
 			this.locationData = location.getJSONArray("data");
 			Log.i(MainActivity.TAG, "Location Parsed");
@@ -28,6 +29,7 @@ public class ResponseHolder {
 			e.printStackTrace();
 		}
 		
+		//Get Location Menu
 		try{
 			this.menuDateInformation = menu.getJSONObject("data").getJSONObject("date");
 			this.menuForAllOutlets = menu.getJSONObject("data").getJSONArray("outlets");
@@ -41,10 +43,13 @@ public class ResponseHolder {
 		}
 		
 		//Generate an arraylist of menus from the menuForAllOutlets JSONArray
+		arrayListOfOutlets = new ArrayList<Outlet>();
+		
 		for (int i = 0; i < locationData.length(); i++){
 			try {
 				Outlet outlet = new Outlet(locationData.getJSONObject(i));
 				outlet.getMenuFromJSON(menuForAllOutlets);
+				arrayListOfOutlets.add(outlet);
 			} catch (JSONException e) {
 				Log.e(MainActivity.TAG, "Could not generate outlet information from location data");
 				e.printStackTrace();
@@ -53,4 +58,7 @@ public class ResponseHolder {
 		
 	}
 
+	public ArrayList<Outlet> getArrayListOfOutlets() {
+		return arrayListOfOutlets;
+	}
 }
