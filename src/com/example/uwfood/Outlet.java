@@ -144,8 +144,7 @@ public class Outlet {
 	public void getMenuFromJSON(JSONArray dailyMenuList){
 //		Log.e(MainActivity.TAG, "Generating Menu from the JSON: " + dailyMenuList.toString());
 		
-		//TODO:2.Parse the menu information
-		//TODO:2a.First find the correct menu json
+		
 		JSONObject menu = null;
 		
 		for (int i = 0; i < dailyMenuList.length(); i++){
@@ -159,7 +158,6 @@ public class Outlet {
 			}
 		}
 		
-		//TODO:2b.Insert the menu information
 		if(menu!=null){
 //			Log.i(MainActivity.TAG, "Corresponding menu for " + this.outlet_name + " is " + menu.toString());
 			weeklyMenuByDay = new ArrayList<DailySpecials>();

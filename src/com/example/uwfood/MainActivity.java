@@ -39,8 +39,9 @@ public class MainActivity extends Activity implements ParserResponse{
 
 	}
 
-	private void displayOutlets(ArrayList<Outlet> arrayListOfOutlets){
-
-	}
+	//TODO:Implement this
+//	private void displayOutlets(ArrayList<Outlet> arrayListOfOutlets){
+//		
+//	}
 
 }

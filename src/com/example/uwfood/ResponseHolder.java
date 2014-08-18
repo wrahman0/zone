@@ -61,4 +61,9 @@ public class ResponseHolder {
 	public ArrayList<Outlet> getArrayListOfOutlets() {
 		return arrayListOfOutlets;
 	}
+	
+	//Returns the information for when the menu is valid for
+	public JSONObject getMenuDateInformation(){
+		return this.menuDateInformation;
+	}
 }
