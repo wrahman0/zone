@@ -1,9 +1,9 @@
 from glob import glob
 from os import rename, listdir
+from pprint import pprint
 import urllib2
 import json
-import re 
-
+import re
 
 def getMenuItems(lowerBound, upperBound):
 	url_first = "https://api.uwaterloo.ca/v2/foodservices/products/"
@@ -91,7 +91,23 @@ def getTags():
 		text_file.write(tag + "\n")
 	text_file.close()
 
+def renameToId():
+	fnames = glob("menu-json/*")
+	
+	for name in fnames:
+		json_data_file = open(name)
+		json_data = json.load(json_data_file)
+		pprint(json_data)
+		rename(name,"menu-json-id/" + str(json_data["data"]["product_id"])+ ".json")
+		json_data_file.close()
 
-getTags()
+
+renameToId()
+
+
+
+
+
+
 
 
