@@ -21,13 +21,6 @@ def getMenuItems(lowerBound, upperBound):
 				json.dump(data, outfile)	
 
 
-def removeInvalidNames():
-	fnames = glob("rename-test/*")
-	for name in fnames:
-		if hasInvalidWord(name):
-			print "INVALID NAME DETECTED: " + name
-
-
 def unique(items):
     found = set([])
     keep = []
@@ -98,14 +91,50 @@ def renameToId():
 		json_data_file = open(name)
 		json_data = json.load(json_data_file)
 		pprint(json_data)
-		rename(name,"menu-json-id/" + str(json_data["data"]["product_id"])+ ".json")
+		rename(name,"menu-json-text/" + str(json_data["data"]["product_id"])+ ".txt")
 		json_data_file.close()
 
 
-renameToId()
+def removeSpecialChars(keyword):
+	return ''.join(e for e in keyword if e.isalnum())
+
+#Extracts tags from the given key and returns in an array
+def getTagsUpdated(key):
+	# key = removeSpecialChars(key)
+	print "FILTERING: " +key
+	tags = []
+	json_file = open('tags.txt')
+	for word in json_file.read().split():
+		tags.append(word)
+
+	tags_to_return = []
+
+	#Check if indiv words are in the tags array
+	for key_substr in key.split():
+		if key_substr.lower() in tags:
+			tags_to_return.append(key_substr.lower())
+
+	print tags_to_return
+	return tags_to_return
+	
+
+def addTagsToJson():
+	fnames = glob("append-test/*")
+
+	for name in fnames:
+		json_data_file = open(name)
+		json_data = json.load(json_data_file)
+		pprint(json_data)
+		print "Name: " + json_data['data']['product_name']
+		json_data['data']['tags'] = getTagsUpdated(json_data['data']['product_name'])
+		pprint(json_data)
+		json_data_file.close()
+		with open(name, 'w') as outfile:
+				json.dump(json_data, outfile)
 
 
-
+addTagsToJson()
+# getTagsUpdated("Steamed Corn")
 
 
 

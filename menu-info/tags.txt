@@ -193,6 +193,7 @@ dijon
 dijonnaise
 dill
 ding
+dinner
 dish
 divan
 dogs
