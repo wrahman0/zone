@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 public class ResponseHolder {
@@ -17,7 +18,11 @@ public class ResponseHolder {
 	
 	private ArrayList<Outlet> arrayListOfOutlets;
 	
-	public ResponseHolder(JSONObject location, JSONObject menu){ //location and menu json is the whole json that is returned by waterloo servers
+	private Context mContext;
+	
+	public ResponseHolder(Context context, JSONObject location, JSONObject menu){ //location and menu json is the whole json that is returned by waterloo servers
+		
+		this.mContext = context;
 		
 		//Get Location Data
 		try {
@@ -47,7 +52,7 @@ public class ResponseHolder {
 		
 		for (int i = 0; i < locationData.length(); i++){
 			try {
-				Outlet outlet = new Outlet(locationData.getJSONObject(i));
+				Outlet outlet = new Outlet(mContext, locationData.getJSONObject(i));
 				outlet.getMenuFromJSON(menuForAllOutlets);
 				arrayListOfOutlets.add(outlet);
 			} catch (JSONException e) {

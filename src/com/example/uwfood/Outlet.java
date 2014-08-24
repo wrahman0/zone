@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 public class Outlet {
@@ -26,14 +27,18 @@ public class Outlet {
 	private JSONArray dates_closed;
 	
 	private ArrayList<DailySpecials> weeklyMenuByDay;
+	
+	private Context mContext;
 
 	//The menu that is passed in should correspond to the location json.
 	//ie. if the location json is for REVelation cafe, then the menu json 
 	//should be the weekly menu for REVelation. This is the assumption that
 	//is made. 
 	
-	public Outlet(JSONObject location){
+	public Outlet(Context context, JSONObject location){
 //		Log.e(MainActivity.TAG, "Location: " + location.toString());
+		
+		this.mContext = context;
 		
 		try {
 			this.outlet_id = location.getInt("outlet_id");
@@ -167,7 +172,7 @@ public class Outlet {
 				JSONArray tempMenu = menu.getJSONArray("menu");	
 				if (tempMenu.length() > 5) Log.e(MainActivity.TAG, "ALERT, MENU LENGTH IS GREATER THAN 7. Unhandled Exceptions expected");
 				for (int i = 0; i < tempMenu.length(); i++){
-					weeklyMenuByDay.add(new DailySpecials(tempMenu.getJSONObject(i)));
+					weeklyMenuByDay.add(new DailySpecials(mContext, tempMenu.getJSONObject(i)));
 				}
 				
 			} catch (JSONException e) {

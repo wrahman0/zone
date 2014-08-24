@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,8 +24,11 @@ public class UWFoodServices {
 	
 	private ResponseHolder responseHolder;
 	private ParserResponse listener;
+	
+	private Context mContext;
 
-	public UWFoodServices(ParserResponse listener){
+	public UWFoodServices(Context context, ParserResponse listener){
+		this.mContext = context;
 		this.listener = listener;
 	}
 	
@@ -107,7 +111,7 @@ public class UWFoodServices {
 			//Separate the menu and location objects by different outlets
 			if (getLocationResponse()!=null && getMenuResponse()!=null){
 				Log.i(MainActivity.TAG, "CREATING RESPONSE HOLDER");
-				setResponseHolder(new ResponseHolder(getLocationResponse(),getMenuResponse()));
+				setResponseHolder(new ResponseHolder(mContext, getLocationResponse(),getMenuResponse()));
 				listener.onParseComplete(getResponseHolder());	
 			}else{
 				Log.e(MainActivity.TAG, "Response Holder is null");

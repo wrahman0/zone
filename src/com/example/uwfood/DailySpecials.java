@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 public class DailySpecials {
@@ -18,8 +19,12 @@ public class DailySpecials {
 	private ArrayList<MenuItem> lunchItems;
 	private ArrayList<MenuItem> dinnerItems;
 	
-	public DailySpecials(JSONObject dailySpecialJSON){
+	private Context mContext;
+	
+	public DailySpecials(Context context, JSONObject dailySpecialJSON){
 		Log.i(MainActivity.TAG, "DailySpecial: "+ dailySpecialJSON.toString());
+		
+		this.mContext = context;
 		
 		try{
 			breakfast = dailySpecialJSON.getJSONObject("meals").getJSONArray("breakfast");
@@ -54,7 +59,7 @@ public class DailySpecials {
 			breakfastItems = new ArrayList<MenuItem>();
 			for (int i = 0; i < breakfast.length(); i++){
 				try {
-					MenuItem item = new MenuItem (breakfast.getJSONObject(i));
+					MenuItem item = new MenuItem (mContext, breakfast.getJSONObject(i));
 					breakfastItems.add(item);
 				} catch (JSONException e) {
 					Log.e(MainActivity.TAG, "Could not itterate over the breakfast items");
@@ -69,7 +74,7 @@ public class DailySpecials {
 			lunchItems = new ArrayList<MenuItem>();
 			for (int i = 0; i < lunch.length(); i++){
 				try {
-					MenuItem item = new MenuItem (lunch.getJSONObject(i));
+					MenuItem item = new MenuItem (mContext, lunch.getJSONObject(i));
 					lunchItems.add(item);
 				} catch (JSONException e) {
 					Log.e(MainActivity.TAG, "Could not itterate over the lunch items");
@@ -84,7 +89,7 @@ public class DailySpecials {
 			dinnerItems = new ArrayList<MenuItem>();
 			for (int i = 0; i < dinner.length(); i++){
 				try {
-					MenuItem item = new MenuItem (dinner.getJSONObject(i));
+					MenuItem item = new MenuItem (mContext, dinner.getJSONObject(i));
 					dinnerItems.add(item);
 				} catch (JSONException e) {
 					Log.e(MainActivity.TAG, "Could not itterate over the dinner items");

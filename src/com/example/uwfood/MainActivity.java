@@ -16,7 +16,7 @@ public class MainActivity extends Activity implements ParserResponse{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		UWFoodServices uwFoodServices = new UWFoodServices(this);
+		UWFoodServices uwFoodServices = new UWFoodServices(this, this);
 		uwFoodServices.connect();
 
 	}
