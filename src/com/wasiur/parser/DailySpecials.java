@@ -1,10 +1,12 @@
-package com.example.uwfood;
+package com.wasiur.parser;
 
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.wasiur.uwfood.MainActivity;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.example.uwfood;
+package com.wasiur.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,8 @@ import java.net.URLConnection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.wasiur.uwfood.MainActivity;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -33,7 +35,7 @@ public class UWFoodServices {
 	}
 	
 	public void connect(){
-		new MyAsyncTask().execute(url_menu+KEY);
+		new MyAsyncTask().execute();
 	}
 
 	public JSONObject getMenuResponse(){
@@ -111,7 +113,7 @@ public class UWFoodServices {
 			//Separate the menu and location objects by different outlets
 			if (getLocationResponse()!=null && getMenuResponse()!=null){
 				Log.i(MainActivity.TAG, "CREATING RESPONSE HOLDER");
-				setResponseHolder(new ResponseHolder(mContext, getLocationResponse(),getMenuResponse()));
+				setResponseHolder(new ResponseHolder(mContext, getLocationResponse(), getMenuResponse()));
 				listener.onParseComplete(getResponseHolder());	
 			}else{
 				Log.e(MainActivity.TAG, "Response Holder is null");

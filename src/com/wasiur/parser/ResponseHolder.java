@@ -1,4 +1,4 @@
-package com.example.uwfood;
+package com.wasiur.parser;
 
 import java.util.ArrayList;
 
@@ -6,24 +6,29 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.wasiur.uwfood.MainActivity;
+
 import android.content.Context;
 import android.util.Log;
 
 public class ResponseHolder {
 	
 	private JSONArray locationData; //Holds the location information (Pretty much all the info) for each outlet
+	private JSONObject rawLocation;
 	
 	private JSONObject menuDateInformation; //Holds the date range for which the menu is valid
 	private JSONArray menuForAllOutlets; //Holds the menu for all outlets
+	private JSONObject rawMenu;
 	
 	private ArrayList<Outlet> arrayListOfOutlets;
 	
 	private Context mContext;
 	
 	public ResponseHolder(Context context, JSONObject location, JSONObject menu){ //location and menu json is the whole json that is returned by waterloo servers
-		
+
+		this.rawMenu = menu;
+		this.rawLocation = location;
 		this.mContext = context;
-		
 		//Get Location Data
 		try {
 			this.locationData = location.getJSONArray("data");
@@ -71,4 +76,14 @@ public class ResponseHolder {
 	public JSONObject getMenuDateInformation(){
 		return this.menuDateInformation;
 	}
+	
+	public JSONObject getLocationData(){
+		return this.rawLocation;
+	}
+	
+	public JSONObject getMenuForAllOutlets(){
+		return this.rawMenu;
+	}
+	
+	
 }

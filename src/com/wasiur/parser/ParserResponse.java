@@ -1,4 +1,4 @@
-package com.example.uwfood;
+package com.wasiur.parser;
 
 
 public interface ParserResponse {
