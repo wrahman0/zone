@@ -1,6 +1,9 @@
 package com.wasiur.parser;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +11,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.wasiur.database.DBAdapterLocation;
 import com.wasiur.database.DBAdapterMenu;
@@ -37,10 +41,25 @@ public class RequestInformation {
 				//Check if the date is expired
 				try {
 					JSONObject menuDateInfo = new JSONObject (cursor.getString(cursor.getColumnIndex(DBAdapterMenu.KEY_MENU)));
-					Log.i(MainActivity.TAG, menuDateInfo.toString());
-					//TODO:Add Logic
+					Log.i(MainActivity.TAG, "Expiration Date" + menuDateInfo.toString());
+					
+					//WORKING CODE BELOW: ENABLE WHEN DONE DEVELOPMENT
+//					ArrayList<String> yymmdd = new ArrayList<String>(Arrays.asList(menuDateInfo.getString("end").split("-")));
+//					if (Integer.parseInt(yymmdd.get(1)) < Calendar.getInstance().get(Calendar.MONTH) || 
+//							Integer.parseInt(yymmdd.get(2)) < Calendar.getInstance().get(Calendar.DAY_OF_MONTH)){
+//						Toast.makeText(mContext, "Menu Expired", Toast.LENGTH_LONG).show();
+//						db.close();
+//						return true;
+//					}else{
+//						Toast.makeText(mContext, "Menu Not Expired", Toast.LENGTH_LONG).show();
+//						db.close();
+//						return false;
+//					}
+					
+					//TEMP BEFORE DEPLOYMENT
 					db.close();
-					return false; //TEMP VALUE
+					return false;
+					
 				} catch (JSONException e) {
 					Log.e(MainActivity.TAG, "Could not parse date information from the Database");
 					e.printStackTrace();

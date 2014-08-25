@@ -32,9 +32,10 @@ public class MainActivity extends Activity implements ParserResponse{
 
 		//Parse the information if required
 		if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
+			Toast.makeText(getBaseContext(), "Loading JSON from Waterloo Server", Toast.LENGTH_LONG).show();
 			requestInformation.parseInformation(this);
 		}else{
-			Toast.makeText(getBaseContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
 			this.responseHolder = requestInformation.setResponseHolder();
 			renderView();
 		}
