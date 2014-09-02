@@ -1,41 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/FrameLayout1"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/outletRowToInflate"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:background="#F1F1F1"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp" >
+            
+            <View
+                android:layout_width="110dp"
+                android:layout_height="0dp"/>
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:background="#e7e7e7" >
-            </TableRow>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:alpha="0.5"
-                android:background="#171717" >
-            </TableRow>
-        </LinearLayout>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/temp" />
-    </FrameLayout>
+                    <TextView
+                        android:id="@+id/outletName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Bon Appetite" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/hoursOfOperation"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12noon - 12midnight" />
+                </TableRow>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:alpha="0.5"
+            android:background="#171717" >
+        </TableRow>
+    </LinearLayout>
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/temp"
+        app:border_color="#000"
+        app:border_width="4dp"
+        app:shadow="true" />
 
 </FrameLayout>

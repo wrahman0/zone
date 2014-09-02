@@ -22,7 +22,7 @@ import com.wasiur.parser.ResponseHolder;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ParserResponse{
 
 	public static final String TAG = "UWFood";
-	private ResponseHolder responseHolder;
+	private ResponseHolder mResponseHolder;
 	
 	private ViewPager mViewPager;
 	private TabsPagerAdapter mAdapter;
@@ -44,13 +44,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			requestInformation.parseInformation(this);
 		}else{
 			Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
-			this.responseHolder = requestInformation.setResponseHolder();
+			this.mResponseHolder = requestInformation.setResponseHolder();
+			initializeTabs();
 		}
 		
+	}
+
+	private void initializeTabs() {
 		//Tabs initialization
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mActionBar = getActionBar();
-		mAdapter = new TabsPagerAdapter (getSupportFragmentManager());
+		mAdapter = new TabsPagerAdapter (getSupportFragmentManager(),mResponseHolder);
 		
 		mViewPager.setAdapter(mAdapter);
 		mActionBar.setHomeButtonEnabled(false);
@@ -81,7 +85,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		    public void onPageScrollStateChanged(int arg0) {
 		    }
 		});
-		
 	}
 	
 	@Override
@@ -104,7 +107,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	public void onParseComplete(ResponseHolder responseHolder){
 
-		this.responseHolder = responseHolder;
+		this.mResponseHolder = responseHolder;
 		//Store info to DB
 		DBAdapterLocation dbL = new DBAdapterLocation(this);
 		DBAdapterMenu dbM = new DBAdapterMenu(this);
@@ -125,6 +128,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			e.printStackTrace();
 		}
 		dbM.close();
+		
+		initializeTabs();
 
 	}
 

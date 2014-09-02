@@ -1,18 +1,20 @@
 package com.wasiur.parser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.wasiur.uwfood.MainActivity;
-
 import android.content.Context;
 import android.util.Log;
 
-public class ResponseHolder {
+import com.wasiur.uwfood.MainActivity;
+
+public class ResponseHolder implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private JSONArray locationData; //Holds the location information (Pretty much all the info) for each outlet
 	private JSONObject rawLocation;
 	
@@ -83,7 +85,5 @@ public class ResponseHolder {
 	
 	public JSONObject getMenuForAllOutlets(){
 		return this.rawMenu;
-	}
-	
-	
+	}	
 }
