@@ -1,28 +1,36 @@
 package com.wasiur.uwfood;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import android.app.Activity;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uwfood.R;
+import com.wasiur.adapter.TabsPagerAdapter;
 import com.wasiur.database.DBAdapterLocation;
 import com.wasiur.database.DBAdapterMenu;
-import com.wasiur.parser.Outlet;
 import com.wasiur.parser.ParserResponse;
 import com.wasiur.parser.RequestInformation;
 import com.wasiur.parser.ResponseHolder;
 
-public class MainActivity extends Activity implements ParserResponse{
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ParserResponse{
 
 	public static final String TAG = "UWFood";
 	private ResponseHolder responseHolder;
+	
+	private ViewPager mViewPager;
+	private TabsPagerAdapter mAdapter;
+	private ActionBar mActionBar;
 
+	// Tab titles
+	private String[] tabs = {"Outlets", "Specials", "Map"};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,9 +45,61 @@ public class MainActivity extends Activity implements ParserResponse{
 		}else{
 			Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
 			this.responseHolder = requestInformation.setResponseHolder();
-			renderView();
 		}
+		
+		//Tabs initialization
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mActionBar = getActionBar();
+		mAdapter = new TabsPagerAdapter (getSupportFragmentManager());
+		
+		mViewPager.setAdapter(mAdapter);
+		mActionBar.setHomeButtonEnabled(false);
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		//Adding Tabs
+		for (String tab_name : tabs){
+			mActionBar.addTab(mActionBar.newTab().setText(tab_name).setTabListener(this));
+		}
+		
+		/**
+         * on swiping the viewpager make respective tab selected
+         * */
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			 
+		    @Override
+		    public void onPageSelected(int position) {
+		        // on changing the page
+		        // make respected tab selected
+		        mActionBar.setSelectedNavigationItem(position);
+		    }
+		 
+		    @Override
+		    public void onPageScrolled(int arg0, float arg1, int arg2) {
+		    }
+		 
+		    @Override
+		    public void onPageScrollStateChanged(int arg0) {
+		    }
+		});
+		
+	}
+	
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		mViewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void onParseComplete(ResponseHolder responseHolder){
@@ -66,26 +126,10 @@ public class MainActivity extends Activity implements ParserResponse{
 		}
 		dbM.close();
 
-		renderView();
-
-
 	}
 
-	private void renderView(){
-		//Displaying info
-		LinearLayout layout = (LinearLayout) findViewById(R.id.mainLinearLayout);
-
-		ArrayList<Outlet> outletArrayToRender = new ArrayList<Outlet>();
-		outletArrayToRender = responseHolder.getArrayListOfOutlets();
-
-		for (Outlet outlet : outletArrayToRender){
-			TextView titleTextView = new TextView(this);
-			TextView descriptionTextView = new TextView(this);
-			titleTextView.setText(outlet.getOutlet_name());
-			descriptionTextView.setText(outlet.getDescription());
-			layout.addView(titleTextView);
-			layout.addView(descriptionTextView);
-		}
-	}
+	
+	
+	
 
 }

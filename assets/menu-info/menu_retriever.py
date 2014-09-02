@@ -18,7 +18,7 @@ def getMenuItems(lowerBound, upperBound):
 			# Replacing regex
 			print "Filename is: " + filename
 			with open(filename, 'w') as outfile:
-				json.dump(data, outfile)	
+				json.dump(data, outfile)
 
 
 def unique(items):
@@ -44,7 +44,7 @@ def getKeyWords(itemName):
 
 	master = []
 	for word in wordsToAnalyze:
-		
+
 
 		if word.isdigit():
 			wordsToAnalyze.remove(word)
@@ -86,7 +86,7 @@ def getTags():
 
 def renameToId():
 	fnames = glob("menu-json/*")
-	
+
 	for name in fnames:
 		json_data_file = open(name)
 		json_data = json.load(json_data_file)
@@ -116,7 +116,7 @@ def getTagsUpdated(key):
 
 	print tags_to_return
 	return tags_to_return
-	
+
 
 def addTagsToJson():
 	fnames = glob("append-test/*")
@@ -133,10 +133,5 @@ def addTagsToJson():
 				json.dump(json_data, outfile)
 
 
-addTagsToJson()
+# addTagsToJson()
 # getTagsUpdated("Steamed Corn")
-
-
-
-
-

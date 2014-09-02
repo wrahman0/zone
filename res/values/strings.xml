@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App -->
     <string name="app_name">UWFood</string>
-    <string name="hello_world">Hello world!</string>
+    
+    <!-- Tabs -->
+    <string name="tab_text_outlet">Outlets</string>
+    <string name="tab_text_specials">Specials</string>
+    <string name="tab_text_map">Map</string>
 
 </resources>
