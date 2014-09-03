@@ -16,9 +16,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -60,22 +60,39 @@ public class OutletFragment extends Fragment {
 			hoursOfOperation.setText(getOperationHoursText(getDayOfWeek(),outlet.getOpening_hours()));
 
 			//Outlet Open/Close status light
-			CircularImageView circularImageView = (CircularImageView) view.findViewById(R.id.outletLogo);
-			if (!outlet.is_open_now()){
-				circularImageView.setBorderColor(getResources().getColor(R.color.closeLight));
-//				ImageView statusLight = (ImageView) view.findViewById(R.id.outletStatus);
-//				statusLight.setImageResource(R.drawable.red_status);
+			CircularImageView circularImageView = (CircularImageView) view.findViewById(R.id.outletStatus);
+			if (!isOutletOpen(outlet)){
+				circularImageView.setImageResource(R.drawable.red_status);
 			}else{
-				circularImageView.setBorderColor(getResources().getColor(R.color.openLight));
+				circularImageView.setImageResource(R.drawable.green_status);
 			}
-			
+
 			//Outlet image loading
-			
+
 			mScrollViewLinearLayout.addView(view);
 		}
 
 	}
-	
+
+	private boolean isOutletOpen(Outlet outlet){
+		try{
+			String[] opening_hour = outlet.getOpening_hours().getJSONObject(getDayOfWeek()).getString("opening_hour").split(":");
+			String[] closing_hour = outlet.getOpening_hours().getJSONObject(getDayOfWeek()).getString("closing_hour").split(":");
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			String[] curr_time = sdf.format(new Date()).split(":");
+			int opening_hour_min = 60* Integer.parseInt(opening_hour[0]) + Integer.parseInt(opening_hour[1]);
+			int closing_hour_min = 60* Integer.parseInt(closing_hour[0]) + Integer.parseInt(closing_hour[1]);
+			closing_hour_min = (closing_hour_min < opening_hour_min ? closing_hour_min + 24*60 : closing_hour_min); //Dealing with above 24 hr, ie, 7 am to 12:30 am
+			int curr_time_min = 60* Integer.parseInt(curr_time[0]) + Integer.parseInt(curr_time[1]);
+			return (curr_time_min >= opening_hour_min && curr_time_min <= closing_hour_min ? true : false);
+		}catch(JSONException e){
+			Log.e(MainActivity.TAG,"Time Parsing Error");
+			return false;
+		}catch(NumberFormatException e){
+			return false;
+		}
+	}
+
 	//Generates the string for the hours of operation textfield
 	private String getOperationHoursText(String day, JSONObject hours){
 		if (!day.isEmpty()){
@@ -93,7 +110,7 @@ public class OutletFragment extends Fragment {
 		}
 		return "Closed";
 	}
-	
+
 	private String hourConversion(String _24HourTime){
 		try {
 			SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
@@ -105,7 +122,7 @@ public class OutletFragment extends Fragment {
 			e.printStackTrace();
 			return "";
 		}
-		
+
 	}
 
 	private String getDayOfWeek(){

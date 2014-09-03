@@ -71,6 +71,7 @@ containing a value of this type.
         public static final int outletLogo=0x7f080008;
         public static final int outletName=0x7f080005;
         public static final int outletRowToInflate=0x7f080003;
+        public static final int outletStatus=0x7f080009;
         public static final int pager=0x7f080000;
         public static final int scrollViewOutletLinearLayout=0x7f080002;
         public static final int tableRow1=0x7f080004;
