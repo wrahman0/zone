@@ -1,5 +1,6 @@
 package com.wasiur.parser;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -8,13 +9,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.wasiur.uwfood.MainActivity;
-
 import android.content.Context;
 import android.util.Log;
 
-public class Outlet {
+import com.wasiur.uwfood.MainActivity;
 
+public class Outlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int outlet_id; //-1 if its null
 	private String outlet_name;
 	private String building;

@@ -49,19 +49,32 @@ containing a value of this type.
          */
         public static final int shadow=0x7f010003;
     }
+    public static final class color {
+        public static final int closeLight=0x7f040000;
+        public static final int openLight=0x7f040001;
+    }
+    public static final class dimen {
+        public static final int outlet_title_size=0x7f050000;
+    }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int temp=0x7f020001;
+        public static final int bg=0x7f020000;
+        public static final int clock=0x7f020001;
+        public static final int green_status=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int location=0x7f020004;
+        public static final int red_status=0x7f020005;
+        public static final int temp=0x7f020006;
     }
     public static final class id {
-        public static final int ScrollView1=0x7f060001;
-        public static final int hoursOfOperation=0x7f060006;
-        public static final int outletName=0x7f060005;
-        public static final int outletRowToInflate=0x7f060003;
-        public static final int pager=0x7f060000;
-        public static final int scrollViewOutletLinearLayout=0x7f060002;
-        public static final int tableRow1=0x7f060004;
-        public static final int tableRow2=0x7f060007;
+        public static final int FrameLayout1=0x7f080001;
+        public static final int hoursOfOperation=0x7f080006;
+        public static final int outletLogo=0x7f080008;
+        public static final int outletName=0x7f080005;
+        public static final int outletRowToInflate=0x7f080003;
+        public static final int pager=0x7f080000;
+        public static final int scrollViewOutletLinearLayout=0x7f080002;
+        public static final int tableRow1=0x7f080004;
+        public static final int tableRow2=0x7f080007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -73,12 +86,12 @@ containing a value of this type.
     public static final class string {
         /**  App 
          */
-        public static final int app_name=0x7f040000;
-        public static final int tab_text_map=0x7f040003;
+        public static final int app_name=0x7f060000;
+        public static final int tab_text_map=0x7f060003;
         /**  Tabs 
          */
-        public static final int tab_text_outlet=0x7f040001;
-        public static final int tab_text_specials=0x7f040002;
+        public static final int tab_text_outlet=0x7f060001;
+        public static final int tab_text_specials=0x7f060002;
     }
     public static final class style {
         /** 
@@ -102,11 +115,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f070001;
     }
     public static final class styleable {
         /** Attributes that can be used with a CircularImageView.

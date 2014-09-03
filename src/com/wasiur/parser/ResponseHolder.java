@@ -15,16 +15,16 @@ import com.wasiur.uwfood.MainActivity;
 public class ResponseHolder implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private JSONArray locationData; //Holds the location information (Pretty much all the info) for each outlet
-	private JSONObject rawLocation;
+	private transient JSONArray locationData; //Holds the location information (Pretty much all the info) for each outlet
+	private transient JSONObject rawLocation;
 	
-	private JSONObject menuDateInformation; //Holds the date range for which the menu is valid
-	private JSONArray menuForAllOutlets; //Holds the menu for all outlets
-	private JSONObject rawMenu;
+	private transient JSONObject menuDateInformation; //Holds the date range for which the menu is valid
+	private transient JSONArray menuForAllOutlets; //Holds the menu for all outlets
+	private transient JSONObject rawMenu;
 	
-	private ArrayList<Outlet> arrayListOfOutlets;
+	private transient ArrayList<Outlet> arrayListOfOutlets;
 	
-	private Context mContext;
+	private transient Context mContext;
 	
 	public ResponseHolder(Context context, JSONObject location, JSONObject menu){ //location and menu json is the whole json that is returned by waterloo servers
 
