@@ -85,7 +85,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/temp"
-            app:border_color="#3c3c3c"
+            app:border_color="#fff"
             app:border_width="4dp"
             app:shadow="true" />
 
