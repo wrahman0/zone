@@ -1,6 +1,5 @@
 package com.wasiur.parser;
 
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,10 +15,6 @@ import com.wasiur.uwfood.MainActivity;
 
 public class Outlet{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int outlet_id; //-1 if its null
 	private String outlet_name;
 	private String building;

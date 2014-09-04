@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,14 @@ import android.widget.TextView;
 
 import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 import com.wasiur.parser.Outlet;
 
 public class RowInflater {
-	
+
 	public void inflateOutletsToView(FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
 		OutletLogic outletLogic = new OutletLogic();
-		
+
 		for (Outlet outlet: outlets){
 			View view = inflater.inflate(R.layout.inflate_outlet, null);
 
@@ -42,6 +44,19 @@ public class RowInflater {
 			}
 
 			//Outlet image loading
+			CircularImageView outletLogo = (CircularImageView) view.findViewById(R.id.outletLogo);
+
+			if (!String.valueOf(outlet.getLogo()).equals("null")) {
+				if (outlet.getOutlet_name().contains("Tim Hortons")){
+					Picasso.with(activity.getBaseContext()).load("http://www.logoeps.com/wp-content/uploads/2013/06/tim-hortons-vector-logo.png").into(outletLogo);	
+				}else{
+					Picasso.with(activity.getBaseContext()).load(String.valueOf(outlet.getLogo())).into(outletLogo);
+				}
+			}else if (String.valueOf(outlet.getLogo()).equals("null")){
+				if (outlet.getOutlet_name().contains("Graduate House")){
+					Picasso.with(activity.getBaseContext()).load("https://uwaterloo.ca/graduate-house/sites/ca.graduate-house/files/resize/styles/sidebar-220px-wide/public/uploads/images/GH%20LOGO%202012-150x150.JPG").into(outletLogo);	
+				}
+			}
 
 			linearLayout.addView(view);
 		}

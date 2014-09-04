@@ -1,27 +1,13 @@
 package com.wasiur.uwfood;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.uwfood.R;
-import com.mikhaellopez.circularimageview.CircularImageView;
-import com.wasiur.parser.Outlet;
 import com.wasiur.parser.ResponseHolder;
 import com.wasiur.render.RowInflater;
 

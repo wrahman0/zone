@@ -35,6 +35,9 @@
                         android:id="@+id/outletName"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:singleLine="false"
                         android:text="Bon Appetite"
                         android:textSize="@dimen/outlet_title_size" />
                 </TableRow>
@@ -64,7 +67,7 @@
             android:id="@+id/tableRow2"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:alpha="0.7"
+            android:alpha="0.6"
             android:background="#171717" >
         </TableRow>
     </LinearLayout>
@@ -98,18 +101,6 @@
             app:border_color="#3c3c3c"
             app:border_width="2dp"
             app:shadow="true" />
-
-        <!--
-             <ImageView
-            android:id="@+id/outletStatus"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="right|bottom"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/green_status" />
-        -->
     </FrameLayout>
 
 </FrameLayout>
