@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
