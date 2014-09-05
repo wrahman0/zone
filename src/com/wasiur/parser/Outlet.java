@@ -17,6 +17,10 @@ import com.wasiur.uwfood.MainActivity;
 public class Outlet implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	private String rawLocationJSON;
+	private String rawMenuJSON;
+	
 	private int outlet_id; //-1 if its null
 	private String outlet_name;
 	private String building;
@@ -43,6 +47,7 @@ public class Outlet implements Serializable{
 //		Log.e(MainActivity.TAG, "Location: " + location.toString());
 		
 		this.mContext = context;
+		this.rawLocationJSON = location.toString();
 		
 		try {
 			this.outlet_id = location.getInt("outlet_id");
@@ -152,7 +157,7 @@ public class Outlet implements Serializable{
 	//This method adds the menu if there is any for the current Outlet. Check using the outlet id
 	public void getMenuFromJSON(JSONArray dailyMenuList){
 //		Log.e(MainActivity.TAG, "Generating Menu from the JSON: " + dailyMenuList.toString());
-		
+		this.rawMenuJSON = dailyMenuList.toString();
 		
 		JSONObject menu = null;
 		
@@ -192,6 +197,14 @@ public class Outlet implements Serializable{
 
 	public int getOutlet_id() {
 		return outlet_id;
+	}
+
+	public String getRawLocationJSON() {
+		return rawLocationJSON;
+	}
+	
+	public String getRawMenuJSON() {
+		return rawMenuJSON;
 	}
 
 	public String getOutlet_name() {

@@ -1,8 +1,13 @@
 package com.wasiur.uwfood;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -28,8 +33,13 @@ public class OutletDetailsActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_outlet_details);
 		
-		Bundle bundle = getIntent().getExtras();
-		this.mOutlet = (Outlet) bundle.getSerializable("com.wasiur.outletobject");
+		try {
+			this.mOutlet = new Outlet(this, new JSONObject(getIntent().getStringExtra("com.wasiur.rawlocationjson")));
+			this.mOutlet.getMenuFromJSON(new JSONArray(getIntent().getStringExtra("com.wasiur.rawmenujson")));
+		} catch (JSONException e) {
+			Log.e(MainActivity.TAG, "Could not generate JSONObject from intent");
+			e.printStackTrace();
+		}
 		
 		findViews();
 		setViewText();
@@ -51,7 +61,6 @@ public class OutletDetailsActivity extends Activity{
 		//Setting the hours of operation
 		OutletLogic outletLogic = new OutletLogic();
 		hoursOfOperation.setText(outletLogic.getOperationHoursText(outletLogic.getDayOfWeek(), mOutlet.getOpening_hours()));
-		
 		
 	}
 	

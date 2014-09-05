@@ -23,8 +23,6 @@ public class RowInflater {
 	public void inflateOutletsToView(final FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
 		OutletLogic outletLogic = new OutletLogic();
 
-		
-		
 		for (Outlet outlet: outlets){
 			View view = inflater.inflate(R.layout.inflate_outlet, null);
 
@@ -35,10 +33,10 @@ public class RowInflater {
 
 				@Override
 				public void onClick(View arg0) {
-					Bundle bundle = new Bundle();
-					bundle.putSerializable("com.wasiur.outletobject", (Outlet) arg0.getTag());
-					Intent intent = new Intent(activity.getApplicationContext(), OutletDetailsActivity.class );
-					intent.putExtras(bundle);
+					Intent intent = new Intent(activity.getApplicationContext(), OutletDetailsActivity.class);
+					Outlet outlet = (Outlet) arg0.getTag();
+					intent.putExtra("com.wasiur.rawlocationjson", outlet.getRawLocationJSON());
+					intent.putExtra("com.wasiur.rawmenujson", outlet.getRawMenuJSON());
 					activity.startActivity(intent);
 				}
 				

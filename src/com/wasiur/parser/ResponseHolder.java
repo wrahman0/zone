@@ -86,4 +86,8 @@ public class ResponseHolder implements Serializable{
 	public JSONObject getMenuForAllOutlets(){
 		return this.rawMenu;
 	}	
+	
+	public JSONArray getMenuArrayForAllOutlets(){
+		return this.menuForAllOutlets;
+	}
 }
