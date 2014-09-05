@@ -1,5 +1,6 @@
 package com.wasiur.parser;
 
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,24 +14,25 @@ import android.util.Log;
 
 import com.wasiur.uwfood.MainActivity;
 
-public class Outlet{
+public class Outlet implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int outlet_id; //-1 if its null
 	private String outlet_name;
 	private String building;
-	private URL logo;
+	private transient URL logo;
 	private float longitude; //-1 if its null
 	private float latitude; //-1 if its null
 	private String description;
 	private String notice;
 	private boolean is_open_now;
-	private JSONObject opening_hours;
-	private JSONArray special_hours;
-	private JSONArray dates_closed;
+	private transient JSONObject opening_hours;
+	private transient JSONArray special_hours;
+	private transient JSONArray dates_closed;
 	
-	private ArrayList<DailySpecials> weeklyMenuByDay;
+	private transient ArrayList<DailySpecials> weeklyMenuByDay;
 	
-	private Context mContext;
+	private transient Context mContext;
 
 	//The menu that is passed in should correspond to the location json.
 	//ie. if the location json is for REVelation cafe, then the menu json 

@@ -2,7 +2,9 @@ package com.wasiur.render;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,15 +16,31 @@ import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.wasiur.parser.Outlet;
+import com.wasiur.uwfood.OutletDetailsActivity;
 
 public class RowInflater {
 
-	public void inflateOutletsToView(FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
+	public void inflateOutletsToView(final FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
 		OutletLogic outletLogic = new OutletLogic();
 
 		for (Outlet outlet: outlets){
 			View view = inflater.inflate(R.layout.inflate_outlet, null);
 
+			//Set the tag so that we can retrieve what outlet this is later
+			view.setTag(outlet);
+			
+			view.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("com.wasiur.outletobject", (Outlet) arg0.getTag());
+					Intent intent = new Intent(activity.getApplicationContext(), OutletDetailsActivity.class );
+					activity.startActivity(intent);
+				}
+				
+			});
+			
 			//Outlet Name
 			TextView outletName = (TextView) view.findViewById(R.id.outletName);
 			outletName.setText(outlet.getOutlet_name());

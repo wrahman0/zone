@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.wasiur.customviews"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    <!-- xmlns:custom="http://schemas.android.com/apk/res/com.wasiur.customviews" -->
+    
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop" />
 
-    <!-- <com.wasiur.customviews.ExtendedSlidingDrawer
+    <com.wasiur.customviews.ExtendedSlidingDrawer
         android:id="@+id/slidingDrawer1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,6 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-    </com.wasiur.customviews.ExtendedSlidingDrawer> -->
+    </com.wasiur.customviews.ExtendedSlidingDrawer>
 
 </FrameLayout>
