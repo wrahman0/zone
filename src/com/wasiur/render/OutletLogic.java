@@ -78,12 +78,13 @@ public class OutletLogic {
 		case Calendar.WEDNESDAY:
 			return "wednesday";
 		case Calendar.THURSDAY:
-			return "THURSDAY";
+			return "thursday";
 		case Calendar.FRIDAY:
 			return "friday";
 		case Calendar.SATURDAY:
 			return "saturday";
 		}
+		Log.e(MainActivity.TAG, "Could not determine day of the week");
 		return "";
 	}
 	
