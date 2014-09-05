@@ -27,11 +27,12 @@
             android:background="#d7d7d7"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sample"
-                android:textSize="20sp" />
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            
         </LinearLayout>
     </com.wasiur.customviews.ExtendedSlidingDrawer>
 
