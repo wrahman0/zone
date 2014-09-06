@@ -8,6 +8,8 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 
 import com.wasiur.parser.Outlet;
@@ -86,6 +88,10 @@ public class OutletLogic {
 		}
 		Log.e(MainActivity.TAG, "Could not determine day of the week");
 		return "";
+	}
+	
+	public Spanned cleanDescription(String description){
+		return (Spanned) (description.contains(".") ? Html.fromHtml(description.substring(0,description.lastIndexOf(".")+1)) : description);
 	}
 	
 }

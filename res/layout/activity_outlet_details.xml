@@ -114,9 +114,11 @@
                             android:paddingTop="3dp" >
 
                             <TextView
+                                android:id="@+id/outletDescription"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Bon App\u00e9tit offers fantastic Chinese food, salads, fruit, beverages, soup, and grill items. Check out the new Waterloo Burger Company featuring a 12oz sirloin burger and loaded fries." >
+
                             </TextView>
                         </TableRow>
                     </LinearLayout>
