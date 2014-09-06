@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.uwfood.R;
@@ -31,6 +32,7 @@ public class OutletDetailsActivity extends Activity{
 	private TextView outletDescription;
 	private TextView outletNotice;
 	private TextView debitAccepted;
+	private TextView building;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class OutletDetailsActivity extends Activity{
 		outletDescription = (TextView) findViewById(R.id.outletDescription);
 		outletNotice = (TextView) findViewById(R.id.outletNotice);
 		debitAccepted = (TextView) findViewById(R.id.debitAccepted);
+		building = (TextView) findViewById(R.id.building);
 	}
 	
 	private void setViewText(){
@@ -93,7 +96,7 @@ public class OutletDetailsActivity extends Activity{
 		}
 		
 		//Outlet description
-		if (!mOutlet.getDescription().equals("null")){
+		if (!mOutlet.getDescription().equals("null") && mOutlet.getDescription().contains(".")){ //TODO: Better solution needed
 			outletDescription.setText(outletLogic.cleanDescription(mOutlet.getDescription()));
 		}else{
 			Log.i(MainActivity.TAG,"Removing description view");
@@ -123,6 +126,15 @@ public class OutletDetailsActivity extends Activity{
 			outletNoticeContainer.setVisibility(View.GONE);
 		}
 		
+		//Building
+		if (mOutlet.getBuilding().isEmpty() || mOutlet.getBuilding().equals("null")){
+			View buildingDivider = (View) findViewById(R.id.buildingDivider);
+			TableRow buildingContainer = (TableRow) findViewById(R.id.buildingContainer);
+			buildingDivider.setVisibility(View.GONE);
+			buildingContainer.setVisibility(View.GONE);
+		}else{
+			building.setText(outletLogic.getBuilding(mOutlet.getBuilding()));
+		}
 		
 	}
 	

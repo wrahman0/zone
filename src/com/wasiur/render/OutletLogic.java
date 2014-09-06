@@ -99,7 +99,11 @@ public class OutletLogic {
 	}
 	
 	public Spanned cleanNotice(String notice){
-		return Html.fromHtml(notice);
+		return Html.fromHtml("Notice: " + notice);
+	}
+	
+	public String getBuilding(String building){
+		return building.contains("Administrative Office") ? "Located in Food Services Office" : "Located in " + building;
 	}
 	
 }
