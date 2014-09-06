@@ -13,10 +13,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uwfood.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.wasiur.googlemap.LocationLogic;
+import com.wasiur.googlemap.MapRender;
 import com.wasiur.parser.Outlet;
 import com.wasiur.render.OutletLogic;
 
@@ -34,6 +39,11 @@ public class OutletDetailsActivity extends Activity{
 	private TextView debitAccepted;
 	private TextView building;
 	
+	//Google Map Values
+	private GoogleMap googleMap;
+	private String initialLocation = "Waterloo University";
+	private float initialZoom = 14.0f;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,7 +59,18 @@ public class OutletDetailsActivity extends Activity{
 		
 		findViews();
 		setViewText();
+		initializeMap();
 		
+		MapRender.setInitialLocation(this, googleMap, initialLocation, initialZoom);
+		MapRender.dropMarker(googleMap, LocationLogic.getLatLngFromOutlet(mOutlet),	mOutlet.getOutlet_name());
+		
+	}
+	
+	private void initializeMap(){
+		if (googleMap == null){
+			googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+			if (googleMap == null) Toast.makeText(this, "Cannot Launch Google Map", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	private void findViews(){
