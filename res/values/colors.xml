@@ -4,4 +4,9 @@
     <color name="closeLight">#EE5353</color>
     <color name="openLight">#27C266</color>
     
+    <color name="disabled">#CDCDCD</color>
+    <color name="fontColor">#000</color>
+    
+    <color name="divColor">#CACACA</color>
+    
 </resources>

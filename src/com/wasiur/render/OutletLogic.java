@@ -94,4 +94,12 @@ public class OutletLogic {
 		return (Spanned) (description.contains(".") ? Html.fromHtml(description.substring(0,description.lastIndexOf(".")+1)) : description);
 	}
 	
+	public boolean isDebitFriendly(String description){
+		return description.contains("Debit accepted");
+	}
+	
+	public Spanned cleanNotice(String notice){
+		return Html.fromHtml(notice);
+	}
+	
 }

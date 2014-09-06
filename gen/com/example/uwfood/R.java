@@ -379,8 +379,11 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f050006;
         public static final int common_signin_btn_light_text_focused=0x7f050007;
         public static final int common_signin_btn_light_text_pressed=0x7f050005;
-        public static final int common_signin_btn_text_dark=0x7f050019;
-        public static final int common_signin_btn_text_light=0x7f05001a;
+        public static final int common_signin_btn_text_dark=0x7f05001c;
+        public static final int common_signin_btn_text_light=0x7f05001d;
+        public static final int disabled=0x7f050019;
+        public static final int divColor=0x7f05001b;
+        public static final int fontColor=0x7f05001a;
         public static final int openLight=0x7f050018;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f05000f;
         /** 
@@ -400,8 +403,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f050011;
         public static final int wallet_holo_blue_light=0x7f050015;
         public static final int wallet_link_text_light=0x7f050016;
-        public static final int wallet_primary_text_holo_light=0x7f05001b;
-        public static final int wallet_secondary_text_holo_dark=0x7f05001c;
+        public static final int wallet_primary_text_holo_light=0x7f05001e;
+        public static final int wallet_secondary_text_holo_dark=0x7f05001f;
     }
     public static final class dimen {
         public static final int outlet_title_size=0x7f090000;
@@ -447,37 +450,43 @@ containing a value of this type.
         public static final int temp=0x7f020025;
     }
     public static final class id {
-        public static final int FrameLayout1=0x7f070022;
+        public static final int FrameLayout1=0x7f070028;
         public static final int book_now=0x7f070010;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
-        public static final int content=0x7f07001f;
+        public static final int content=0x7f070025;
+        public static final int debitAccepted=0x7f070020;
+        public static final int descriptionDivider=0x7f07001c;
         public static final int grayscale=0x7f070012;
-        public static final int handle=0x7f070020;
+        public static final int handle=0x7f070026;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hoursOfOperation=0x7f070017;
         public static final int hybrid=0x7f070004;
-        public static final int map=0x7f070021;
+        public static final int map=0x7f070027;
         public static final int match_parent=0x7f07000c;
         public static final int monochrome=0x7f070013;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
-        public static final int outletDescription=0x7f07001a;
-        public static final int outletLogo=0x7f07001c;
+        public static final int noticeDivider=0x7f07001f;
+        public static final int outletDescription=0x7f07001b;
+        public static final int outletDescriptionContainer=0x7f07001a;
+        public static final int outletLogo=0x7f070022;
         public static final int outletName=0x7f070016;
-        public static final int outletRowToInflate=0x7f070024;
-        public static final int outletStatus=0x7f07001d;
+        public static final int outletNotice=0x7f07001e;
+        public static final int outletNoticeContainer=0x7f07001d;
+        public static final int outletRowToInflate=0x7f07002a;
+        public static final int outletStatus=0x7f070023;
         public static final int pager=0x7f070014;
         public static final int production=0x7f070007;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
-        public static final int scrollView1=0x7f07001b;
-        public static final int scrollViewOutletLinearLayout=0x7f070023;
+        public static final int scrollView1=0x7f070021;
+        public static final int scrollViewOutletLinearLayout=0x7f070029;
         public static final int selectionDetails=0x7f07000b;
-        public static final int slidingDrawer1=0x7f07001e;
+        public static final int slidingDrawer1=0x7f070024;
         public static final int strict_sandbox=0x7f070009;
         public static final int tableRow1=0x7f070015;
         public static final int tableRow2=0x7f070018;

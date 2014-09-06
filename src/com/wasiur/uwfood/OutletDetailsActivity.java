@@ -7,10 +7,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.uwfood.R;
@@ -30,6 +30,7 @@ public class OutletDetailsActivity extends Activity{
 	private CircularImageView outletLogo;
 	private TextView outletDescription;
 	private TextView outletNotice;
+	private TextView debitAccepted;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +56,17 @@ public class OutletDetailsActivity extends Activity{
 		statusLight = (CircularImageView) findViewById(R.id.outletStatus);
 		outletLogo = (CircularImageView) findViewById(R.id.outletLogo);
 		outletDescription = (TextView) findViewById(R.id.outletDescription);
+		outletNotice = (TextView) findViewById(R.id.outletNotice);
+		debitAccepted = (TextView) findViewById(R.id.debitAccepted);
 	}
 	
 	private void setViewText(){
+		
 		//Setting outlet name with custom font
 		outletName.setText(mOutlet.getOutlet_name());
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Harabara.ttf");
 		outletName.setTypeface(custom_font);
-		outletName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+		outletName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
 		
 		//Setting the hours of operation
 		OutletLogic outletLogic = new OutletLogic();
@@ -89,11 +93,34 @@ public class OutletDetailsActivity extends Activity{
 		}
 		
 		//Outlet description
-		if (!mOutlet.getDescription().equals("null") && !mOutlet.getDescription().isEmpty()){
+		if (!mOutlet.getDescription().equals("null")){
 			outletDescription.setText(outletLogic.cleanDescription(mOutlet.getDescription()));
 		}else{
 			Log.i(MainActivity.TAG,"Removing description view");
-			outletDescription.setVisibility(View.GONE);
+			View descriptionDivider = (View) findViewById(R.id.descriptionDivider);
+			LinearLayout outletDescriptionContainer = (LinearLayout) findViewById(R.id.outletDescriptionContainer);
+			descriptionDivider.setVisibility(View.GONE);
+			outletDescriptionContainer.setVisibility(View.GONE);
+		}
+		
+		//Debit card
+		debitAccepted.setText("Debit Accepted");
+		
+		if (outletLogic.isDebitFriendly(mOutlet.getDescription())){
+			debitAccepted.setTextColor(getResources().getColor(R.color.fontColor));
+		}else{
+			debitAccepted.setTextColor(getResources().getColor(R.color.disabled));
+		}
+		
+		//Notice
+		if (!mOutlet.getNotice().equals("null")){
+			outletNotice.setText(outletLogic.cleanNotice(mOutlet.getNotice()));
+		}else{
+			Log.i(MainActivity.TAG,"Removing notice view");
+			View noticeDivider = (View) findViewById(R.id.noticeDivider);
+			LinearLayout outletNoticeContainer = (LinearLayout) findViewById(R.id.outletNoticeContainer);
+			noticeDivider.setVisibility(View.GONE);
+			outletNoticeContainer.setVisibility(View.GONE);
 		}
 		
 		

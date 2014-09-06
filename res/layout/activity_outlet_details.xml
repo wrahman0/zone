@@ -46,9 +46,6 @@
                             android:id="@+id/outletName"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:singleLine="false"
                             android:text="Bon Appetite"
                             android:textSize="@dimen/outlet_title_size" />
                     </TableRow>
@@ -99,9 +96,10 @@
                     <!-- Each Linear Layout (Horizontal) represents a row in the actual view -->
 
                     <LinearLayout
-                        android:baselineAligned="false"
+                        android:id="@+id/outletDescriptionContainer"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:baselineAligned="false"
                         android:orientation="horizontal" >
 
                         <TableRow
@@ -117,23 +115,25 @@
                                 android:id="@+id/outletDescription"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Bon App\u00e9tit offers fantastic Chinese food, salads, fruit, beverages, soup, and grill items. Check out the new Waterloo Burger Company featuring a 12oz sirloin burger and loaded fries." >
-
+                                android:text="Bon App\u00e9tit offers fantastic Chinese food, salads, fruit, beverages, soup, and grill items. Check out the new Waterloo Burger Company featuring a 12oz sirloin burger and loaded fries."
+                                android:textColor="@color/fontColor" >
                             </TextView>
                         </TableRow>
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/descriptionDivider"
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
-                        android:background="#3c3c3c" />
+                        android:background="@color/divColor" />
 
                     <!-- Second Row -->
 
                     <LinearLayout
-                        android:baselineAligned="false"
+                        android:id="@+id/outletNoticeContainer"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:baselineAligned="false"
                         android:orientation="horizontal" >
 
                         <TableRow
@@ -146,19 +146,20 @@
                             android:paddingTop="3dp" >
 
                             <TextView
+                                android:id="@+id/outletNotice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="August 31st and September 1st: 8:30am to 4:30pm. September 2nd-5th 9:00am to 3:00pm" >
+                                android:text="August 31st and September 1st: 8:30am to 4:30pm. September 2nd-5th 9:00am to 3:00pm"
+                                android:textColor="@color/fontColor" >
                             </TextView>
                         </TableRow>
                     </LinearLayout>
-                    
-                    
 
                     <View
+                        android:id="@+id/noticeDivider"
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
-                        android:background="#3c3c3c" />
+                        android:background="@color/divColor" />
 
                     <!-- Third Row -->
 
@@ -179,14 +180,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Located in SLC" >
+                                android:text="Located in SLC"
+                                android:textColor="@color/fontColor" >
                             </TextView>
                         </TableRow>
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:background="#3c3c3c" />
+                            android:background="@color/divColor" />
 
                         <TableRow
                             android:layout_width="0dp"
@@ -198,9 +200,11 @@
                             android:paddingTop="3dp" >
 
                             <TextView
+                                android:id="@+id/debitAccepted"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Debit Accepted" >
+                                android:text="Debit Accepted"
+                                android:textColor="@color/fontColor" >
                             </TextView>
                         </TableRow>
                     </LinearLayout>
@@ -208,7 +212,7 @@
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
-                        android:background="#3c3c3c" />
+                        android:background="@color/divColor" />
 
                     <ScrollView
                         android:id="@+id/scrollView1"
@@ -219,12 +223,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical" >
-                            
-                            
-                            
                         </LinearLayout>
                     </ScrollView>
-                    
                 </LinearLayout>
             </TableRow>
 
