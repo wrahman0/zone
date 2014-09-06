@@ -238,6 +238,11 @@ public class Outlet implements Serializable{
 	public boolean is_open_now() {
 		return is_open_now;
 	}
+	
+	public ArrayList<DailySpecials> getWeeklyMenuByDay() {
+		return weeklyMenuByDay;
+	}
+
 
 	public JSONObject getOpening_hours() {
 		return opening_hours;

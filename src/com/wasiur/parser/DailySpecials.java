@@ -103,5 +103,19 @@ public class DailySpecials {
 		}
 		
 	}
+
+	public ArrayList<MenuItem> getBreakfastItems() {
+		return breakfastItems;
+	}
+
+	public ArrayList<MenuItem> getLunchItems() {
+		return lunchItems;
+	}
+
+	public ArrayList<MenuItem> getDinnerItems() {
+		return dinnerItems;
+	}
+	
+	
 	
 }
