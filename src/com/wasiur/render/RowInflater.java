@@ -2,19 +2,22 @@ package com.wasiur.render;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.wasiur.parser.DailySpecials;
+import com.wasiur.parser.MenuItem;
 import com.wasiur.parser.Outlet;
 import com.wasiur.uwfood.OutletDetailsActivity;
 
@@ -28,7 +31,7 @@ public class RowInflater {
 
 			//Set the tag so that we can retrieve what outlet this is later
 			view.setTag(outlet);
-			
+
 			view.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -39,9 +42,9 @@ public class RowInflater {
 					intent.putExtra("com.wasiur.rawmenujson", outlet.getRawMenuJSON());
 					activity.startActivity(intent);
 				}
-				
+
 			});
-			
+
 			//Outlet Name
 			TextView outletName = (TextView) view.findViewById(R.id.outletName);
 			outletName.setText(outlet.getOutlet_name());
@@ -77,6 +80,69 @@ public class RowInflater {
 			}
 
 			linearLayout.addView(view);
+		}
+	}
+
+	public static void inflateMenuItems(Context context, LinearLayout linearLayout, Outlet outlet){
+		if (outlet.getWeeklyMenuByDay()!=null && !outlet.getWeeklyMenuByDay().isEmpty()){
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			
+			for (DailySpecials daily : outlet.getWeeklyMenuByDay()){
+				if (daily.getBreakfastItems()!=null && !daily.getBreakfastItems().isEmpty()){
+					
+					for (MenuItem item: daily.getBreakfastItems()){
+						View view = inflater.inflate(R.layout.inflate_menu_item_row, null);
+
+						//Title
+						TextView title = (TextView) view.findViewById(R.id.menuItemName);
+						title.setText(item.getProductName());
+
+						//Calories
+						if (item.getCalories()!=-1){
+							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
+							cal.setText(item.getCalories());
+						}
+						
+						linearLayout.addView(view);
+					}
+				}
+				if (daily.getLunchItems()!=null && !daily.getLunchItems().isEmpty()){
+
+					for (MenuItem item: daily.getLunchItems()){
+						View view = inflater.inflate(R.layout.inflate_menu_item_row, null);
+
+						//Title
+						TextView title = (TextView) view.findViewById(R.id.menuItemName);
+						title.setText(item.getProductName());
+
+						//Calories
+						if (item.getCalories()!=-1){
+							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
+							cal.setText(String.valueOf(item.getCalories()));
+						}
+						
+						linearLayout.addView(view);
+					}
+				}
+				if (daily.getDinnerItems()!=null && !daily.getDinnerItems().isEmpty()){
+
+					for (MenuItem item: daily.getDinnerItems()){
+						View view = inflater.inflate(R.layout.inflate_menu_item_row, null);
+
+						//Title
+						TextView title = (TextView) view.findViewById(R.id.menuItemName);
+						title.setText(item.getProductName());
+
+						//Calories
+						if (item.getCalories()!=-1){
+							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
+							cal.setText(String.valueOf(item.getCalories()));
+						}
+						
+						linearLayout.addView(view);
+					}
+				}
+			}
 		}
 	}
 }

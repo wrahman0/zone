@@ -85,7 +85,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/temp"
-            app:border_color="#fff"
+            app:border_color="@color/logoBorder"
             app:border_width="4dp"
             app:shadow="true" />
 
@@ -98,7 +98,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="76dp"
             android:src="@drawable/green_status"
-            app:border_color="#3c3c3c"
+            app:border_color="@color/statusBorder"
             app:border_width="2dp"
             app:shadow="true" />
     </FrameLayout>

@@ -24,6 +24,7 @@ import com.wasiur.googlemap.LocationLogic;
 import com.wasiur.googlemap.MapRender;
 import com.wasiur.parser.Outlet;
 import com.wasiur.render.OutletLogic;
+import com.wasiur.render.RowInflater;
 
 public class OutletDetailsActivity extends Activity{
 	
@@ -38,6 +39,8 @@ public class OutletDetailsActivity extends Activity{
 	private TextView outletNotice;
 	private TextView debitAccepted;
 	private TextView building;
+	
+	private LinearLayout menuItemsLinearLayout;
 	
 	//Google Map Values
 	private GoogleMap googleMap;
@@ -64,6 +67,9 @@ public class OutletDetailsActivity extends Activity{
 		MapRender.setInitialLocation(this, googleMap, initialLocation, initialZoom);
 		MapRender.dropMarker(googleMap, LocationLogic.getLatLngFromOutlet(mOutlet),	mOutlet.getOutlet_name());
 		
+		
+		RowInflater.inflateMenuItems(this, menuItemsLinearLayout, mOutlet);
+		
 	}
 	
 	private void initializeMap(){
@@ -82,6 +88,8 @@ public class OutletDetailsActivity extends Activity{
 		outletNotice = (TextView) findViewById(R.id.outletNotice);
 		debitAccepted = (TextView) findViewById(R.id.debitAccepted);
 		building = (TextView) findViewById(R.id.building);
+		
+		menuItemsLinearLayout = (LinearLayout) findViewById(R.id.menuItemsLinearLayout);
 	}
 	
 	private void setViewText(){

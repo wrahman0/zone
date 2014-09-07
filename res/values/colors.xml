@@ -9,4 +9,11 @@
     
     <color name="divColor">#CACACA</color>
     
+    <!-- Circular Image View specs -->
+    <color name="logoBorder">#3c3c3c</color>
+    <color name="statusBorder">#000</color>
+    <color name="menuItemRowBg">#000</color>
+    
+    <color name="menuRowTextColor">#fff</color>
+    
 </resources>
