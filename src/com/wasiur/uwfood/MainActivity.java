@@ -5,11 +5,15 @@ import java.sql.SQLException;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.uwfood.R;
 import com.wasiur.adapter.TabsPagerAdapter;
@@ -39,17 +43,62 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		RequestInformation requestInformation = new RequestInformation(this);
 
 		//Parse the information if required
-		if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
-			Toast.makeText(getBaseContext(), "Loading JSON from Waterloo Server", Toast.LENGTH_LONG).show();
-			requestInformation.parseInformation(this);
-		}else{
-			Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
-			this.mResponseHolder = requestInformation.setResponseHolder();
+//		if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
+//			Toast.makeText(getBaseContext(), "Loading JSON from Waterloo Server", Toast.LENGTH_LONG).show();
+//			requestInformation.parseInformation(this);
+//		}else{
+//			Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
+//			this.mResponseHolder = requestInformation.setResponseHolder();
+//			initializeTabs();
+//		}
+		
+		new InitialLoadAsyncTask().execute();
+		
+	} 
+	
+	public class InitialLoadAsyncTask extends AsyncTask<Void,Void,Void>{
+		
+		AnimationDrawable loadAnimation;
+		
+		@Override
+		protected void onPreExecute() {
+			
+			ImageView initialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
+			initialLoadProgress.setBackgroundResource(R.anim.loading_spinner);
+			loadAnimation = (AnimationDrawable) initialLoadProgress.getBackground();
+			loadAnimation.start();
+//			ProgressBar initialLoadProgress = (ProgressBar) findViewById(R.id.initialLoadProgress);
+			initialLoadProgress.setVisibility(View.VISIBLE);
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			RequestInformation requestInformation = new RequestInformation(MainActivity.this);
+
+			//Parse the information if required
+			if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
+//				Toast.makeText(getBaseContext(), "Loading JSON from Waterloo Server", Toast.LENGTH_LONG).show();
+				requestInformation.parseInformation(MainActivity.this);
+			}else{
+//				Toast.makeText(getBaseContext(), "Loading JSON from database", Toast.LENGTH_LONG).show();
+				mResponseHolder = requestInformation.setResponseHolder();
+			}
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
 			initializeTabs();
+			ImageView initialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
+			initialLoadProgress.setVisibility(View.GONE);
+			loadAnimation.stop();
+			super.onPostExecute(result);
 		}
 		
 	}
-
+	
 	private void initializeTabs() {
 		//Tabs initialization
 		mViewPager = (ViewPager) findViewById(R.id.pager);

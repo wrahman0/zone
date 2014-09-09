@@ -70,11 +70,11 @@ public class OutletLogic {
 
 	public String getDayOfWeek(){
 		Calendar calendar = Calendar.getInstance();
-		switch(calendar.get(Calendar.DAY_OF_MONTH)){
+		switch(calendar.get(Calendar.DAY_OF_WEEK)){
 		case Calendar.SUNDAY:
 			return "sunday";
 		case Calendar.MONDAY:
-			return "sunday";
+			return "monday";
 		case Calendar.TUESDAY:
 			return "tuesday";
 		case Calendar.WEDNESDAY:
