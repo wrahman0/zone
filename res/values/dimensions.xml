@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="outlet_title_size">18sp</dimen>
     <dimen name="menuItemRowMarginBottom">8dp</dimen>
     <dimen name="menuRowMargin">10dp</dimen>
     <dimen name="menuItemRowHeight">100dp</dimen>
+    <dimen name="errorTitleHeight">25sp</dimen>
+    <dimen name="errorDescHeight">16sp</dimen>
     
 </resources>

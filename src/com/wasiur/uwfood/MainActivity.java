@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,12 +14,12 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.example.uwfood.R;
 import com.wasiur.adapter.TabsPagerAdapter;
 import com.wasiur.database.DBAdapterLocation;
 import com.wasiur.database.DBAdapterMenu;
+import com.wasiur.devicestatus.DeviceNetwork;
 import com.wasiur.parser.ParserResponse;
 import com.wasiur.parser.RequestInformation;
 import com.wasiur.parser.ResponseHolder;
@@ -39,8 +40,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		RequestInformation requestInformation = new RequestInformation(this);
+		if ( !DeviceNetwork.isNetworkAvailable(this) && 
+				(requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired())){
+			Intent intent = new Intent(this, ErrorActivity.class);
+			intent.putExtra("com.wasiur.errorMsg", "Internet is not available");
+			startActivity(intent);
+		}else{
+			new InitialLoadAsyncTask().execute();
+		}
 
 		//Parse the information if required
 //		if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
@@ -52,7 +61,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 //			initializeTabs();
 //		}
 		
-		new InitialLoadAsyncTask().execute();
+		
 		
 	} 
 	
@@ -78,6 +87,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 			//Parse the information if required
 			if (requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired()){
+				if (mResponseHolder == null) Log.e("NULL", "Loading Respo");
 //				Toast.makeText(getBaseContext(), "Loading JSON from Waterloo Server", Toast.LENGTH_LONG).show();
 				requestInformation.parseInformation(MainActivity.this);
 			}else{
@@ -90,7 +100,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		@Override
 		protected void onPostExecute(Void result) {
-			initializeTabs();
 			ImageView initialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
 			initialLoadProgress.setVisibility(View.GONE);
 			loadAnimation.stop();

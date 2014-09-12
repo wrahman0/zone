@@ -22,7 +22,7 @@ public class ResponseHolder implements Serializable{
 	private transient JSONArray menuForAllOutlets; //Holds the menu for all outlets
 	private transient JSONObject rawMenu;
 	
-	private transient ArrayList<Outlet> arrayListOfOutlets;
+	private ArrayList<Outlet> arrayListOfOutlets;
 	
 	private transient Context mContext;
 	

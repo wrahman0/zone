@@ -9,16 +9,17 @@ import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.wasiur.devicestatus.DeviceNetwork;
 import com.wasiur.parser.DailySpecials;
 import com.wasiur.parser.MenuItem;
 import com.wasiur.parser.Outlet;
+import com.wasiur.uwfood.ErrorActivity;
 import com.wasiur.uwfood.OutletDetailsActivity;
 
 public class RowInflater {
@@ -36,11 +37,18 @@ public class RowInflater {
 
 				@Override
 				public void onClick(View arg0) {
-					Intent intent = new Intent(activity.getApplicationContext(), OutletDetailsActivity.class);
-					Outlet outlet = (Outlet) arg0.getTag();
-					intent.putExtra("com.wasiur.rawlocationjson", outlet.getRawLocationJSON());
-					intent.putExtra("com.wasiur.rawmenujson", outlet.getRawMenuJSON());
-					activity.startActivity(intent);
+					if (DeviceNetwork.isNetworkAvailable(activity)){
+						Intent intent = new Intent(activity.getApplicationContext(), OutletDetailsActivity.class);
+						Outlet outlet = (Outlet) arg0.getTag();
+						intent.putExtra("com.wasiur.rawlocationjson", outlet.getRawLocationJSON());
+						intent.putExtra("com.wasiur.rawmenujson", outlet.getRawMenuJSON());
+						activity.startActivity(intent);	
+					}else{
+						//Load No Network Error Page
+						Intent intent = new Intent(activity, ErrorActivity.class);
+						intent.putExtra("com.wasiur.errorMsg", "No Internet Connection");
+						activity.startActivity(intent);
+					}
 				}
 
 			});

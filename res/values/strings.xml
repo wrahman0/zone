@@ -8,5 +8,8 @@
     <string name="tab_text_outlet">Outlets</string>
     <string name="tab_text_specials">Specials</string>
     <string name="tab_text_map">Map</string>
+    
+    <!-- Error -->
+    <string name="errorTitle">Error</string>
 
 </resources>

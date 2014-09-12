@@ -416,6 +416,8 @@ containing a value of this type.
         public static final int wallet_secondary_text_holo_dark=0x7f060023;
     }
     public static final class dimen {
+        public static final int errorDescHeight=0x7f0a0005;
+        public static final int errorTitleHeight=0x7f0a0004;
         public static final int menuItemRowHeight=0x7f0a0003;
         public static final int menuItemRowMarginBottom=0x7f0a0001;
         public static final int menuRowMargin=0x7f0a0002;
@@ -470,55 +472,58 @@ containing a value of this type.
         public static final int temp=0x7f02002d;
     }
     public static final class id {
-        public static final int FrameLayout1=0x7f08002d;
+        public static final int FrameLayout1=0x7f080014;
         public static final int book_now=0x7f080010;
-        public static final int building=0x7f080022;
-        public static final int buildingContainer=0x7f080021;
-        public static final int buildingDivider=0x7f080023;
+        public static final int building=0x7f080026;
+        public static final int buildingContainer=0x7f080025;
+        public static final int buildingDivider=0x7f080027;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
         public static final int classic=0x7f080011;
-        public static final int content=0x7f08002a;
-        public static final int debitAccepted=0x7f080024;
-        public static final int descriptionDivider=0x7f08001d;
+        public static final int content=0x7f08002e;
+        public static final int debitAccepted=0x7f080028;
+        public static final int descriptionDivider=0x7f080021;
+        public static final int errorDesc=0x7f080017;
+        public static final int errorTitle=0x7f080016;
         public static final int grayscale=0x7f080012;
-        public static final int handle=0x7f08002b;
+        public static final int handle=0x7f08002f;
         public static final int holo_dark=0x7f080005;
         public static final int holo_light=0x7f080006;
-        public static final int hoursOfOperation=0x7f080018;
+        public static final int hoursOfOperation=0x7f08001c;
         public static final int hybrid=0x7f080004;
-        public static final int initialLoadProgress=0x7f080015;
-        public static final int map=0x7f08002c;
+        public static final int imageView1=0x7f080015;
+        public static final int initialLoadProgress=0x7f080019;
+        public static final int map=0x7f080030;
         public static final int match_parent=0x7f08000c;
-        public static final int menuItemCalories=0x7f080031;
-        public static final int menuItemImage=0x7f08002f;
-        public static final int menuItemName=0x7f080030;
-        public static final int menuItemsLinearLayout=0x7f080026;
+        public static final int menuItemCalories=0x7f080034;
+        public static final int menuItemImage=0x7f080032;
+        public static final int menuItemName=0x7f080033;
+        public static final int menuItemsLinearLayout=0x7f08002a;
         public static final int monochrome=0x7f080013;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
-        public static final int noticeDivider=0x7f080020;
-        public static final int outletDescription=0x7f08001c;
-        public static final int outletDescriptionContainer=0x7f08001b;
-        public static final int outletLogo=0x7f080027;
-        public static final int outletName=0x7f080017;
-        public static final int outletNotice=0x7f08001f;
-        public static final int outletNoticeContainer=0x7f08001e;
-        public static final int outletRowToInflate=0x7f080032;
-        public static final int outletStatus=0x7f080028;
-        public static final int pager=0x7f080014;
+        public static final int noticeDivider=0x7f080024;
+        public static final int outletDescription=0x7f080020;
+        public static final int outletDescriptionContainer=0x7f08001f;
+        public static final int outletLogo=0x7f08002b;
+        public static final int outletName=0x7f08001b;
+        public static final int outletNotice=0x7f080023;
+        public static final int outletNoticeContainer=0x7f080022;
+        public static final int outletRowToInflate=0x7f080035;
+        public static final int outletStatus=0x7f08002c;
+        public static final int pager=0x7f080018;
         public static final int production=0x7f080007;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
-        public static final int scrollView1=0x7f080025;
-        public static final int scrollViewOutletLinearLayout=0x7f08002e;
+        public static final int scrollView1=0x7f080029;
+        public static final int scrollViewOutletLinearLayout=0x7f080031;
         public static final int selectionDetails=0x7f08000b;
-        public static final int slidingDrawer1=0x7f080029;
+        public static final int slidingDrawer1=0x7f08002d;
         public static final int strict_sandbox=0x7f080009;
-        public static final int tableRow1=0x7f080016;
-        public static final int tableRow2=0x7f080019;
-        public static final int tableRow3=0x7f08001a;
+        public static final int tableRow1=0x7f08001a;
+        public static final int tableRow2=0x7f08001d;
+        public static final int tableRow3=0x7f08001e;
         public static final int terrain=0x7f080003;
         public static final int wrap_content=0x7f08000d;
     }
@@ -526,13 +531,14 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f090000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_outlet_details=0x7f030001;
-        public static final int fragment_map=0x7f030002;
-        public static final int fragment_outlet=0x7f030003;
-        public static final int fragment_specials=0x7f030004;
-        public static final int inflate_menu_item_row=0x7f030005;
-        public static final int inflate_outlet=0x7f030006;
+        public static final int activity_error=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_outlet_details=0x7f030002;
+        public static final int fragment_map=0x7f030003;
+        public static final int fragment_outlet=0x7f030004;
+        public static final int fragment_specials=0x7f030005;
+        public static final int inflate_menu_item_row=0x7f030006;
+        public static final int inflate_outlet=0x7f030007;
     }
     public static final class string {
         /**  App 
@@ -627,6 +633,9 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070018;
+        /**  Error 
+         */
+        public static final int errorTitle=0x7f07001e;
         public static final int tab_text_map=0x7f07001d;
         /**  Tabs 
          */
