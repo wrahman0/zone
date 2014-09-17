@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,13 +17,15 @@ import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.wasiur.devicestatus.DeviceNetwork;
+import com.wasiur.flickr.FlickrService;
+import com.wasiur.flickr.OnFlickrResponse;
 import com.wasiur.parser.DailySpecials;
 import com.wasiur.parser.MenuItem;
 import com.wasiur.parser.Outlet;
 import com.wasiur.uwfood.ErrorActivity;
 import com.wasiur.uwfood.OutletDetailsActivity;
 
-public class RowInflater {
+public class RowInflater{
 
 	public void inflateOutletsToView(final FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
 		OutletLogic outletLogic = new OutletLogic();
@@ -111,6 +114,7 @@ public class RowInflater {
 							cal.setText(item.getCalories());
 						}
 						
+						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));
 						linearLayout.addView(view);
 					}
 				}
@@ -129,6 +133,7 @@ public class RowInflater {
 							cal.setText(String.valueOf(item.getCalories()));
 						}
 						
+						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));
 						linearLayout.addView(view);
 					}
 				}
@@ -147,10 +152,17 @@ public class RowInflater {
 							cal.setText(String.valueOf(item.getCalories()));
 						}
 						
+						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));
 						linearLayout.addView(view);
 					}
 				}
 			}
 		}
 	}
+
+
+//	@Override
+//	public void FlickrResponse(JSONObject response,ImageView destinationImageView) {
+//		Picasso.with(getBaseContext()).load(FlickrService.extractFlickrUrl(response)).into(destinationImageView);
+//	}
 }

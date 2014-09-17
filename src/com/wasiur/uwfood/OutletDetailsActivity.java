@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,13 +21,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
+import com.wasiur.flickr.FlickrService;
+import com.wasiur.flickr.OnFlickrResponse;
 import com.wasiur.googlemap.LocationLogic;
 import com.wasiur.googlemap.MapRender;
 import com.wasiur.parser.Outlet;
 import com.wasiur.render.OutletLogic;
 import com.wasiur.render.RowInflater;
 
-public class OutletDetailsActivity extends Activity{
+public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 	
 	private Outlet mOutlet;
 	
@@ -165,6 +168,11 @@ public class OutletDetailsActivity extends Activity{
 			building.setText(outletLogic.getBuilding(mOutlet.getBuilding()));
 		}
 		
+	}
+
+	@Override
+	public void FlickrResponse(JSONObject response,ImageView destinationImageView) {
+		Picasso.with(getBaseContext()).load(FlickrService.extractFlickrUrl(response)).into(destinationImageView);
 	}
 	
 	

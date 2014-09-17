@@ -48,6 +48,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			intent.putExtra("com.wasiur.errorMsg", "Internet is not available");
 			startActivity(intent);
 		}else{
+			Log.i("DEBUG", "STARTING ACTIVITY");
 			new InitialLoadAsyncTask().execute();
 		}
 
@@ -60,8 +61,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 //			this.mResponseHolder = requestInformation.setResponseHolder();
 //			initializeTabs();
 //		}
-		
-		
 		
 	} 
 	
@@ -103,6 +102,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			ImageView initialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
 			initialLoadProgress.setVisibility(View.GONE);
 			loadAnimation.stop();
+			initializeTabs();
 			super.onPostExecute(result);
 		}
 		
