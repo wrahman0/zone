@@ -2,6 +2,7 @@ package com.wasiur.render;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -25,7 +26,7 @@ import com.wasiur.parser.Outlet;
 import com.wasiur.uwfood.ErrorActivity;
 import com.wasiur.uwfood.OutletDetailsActivity;
 
-public class RowInflater{
+@SuppressLint("InflateParams") public class RowInflater{
 
 	public void inflateOutletsToView(final FragmentActivity activity, LayoutInflater inflater, LinearLayout linearLayout, ArrayList<Outlet> outlets){
 		OutletLogic outletLogic = new OutletLogic();
@@ -159,10 +160,4 @@ public class RowInflater{
 			}
 		}
 	}
-
-
-//	@Override
-//	public void FlickrResponse(JSONObject response,ImageView destinationImageView) {
-//		Picasso.with(getBaseContext()).load(FlickrService.extractFlickrUrl(response)).into(destinationImageView);
-//	}
 }

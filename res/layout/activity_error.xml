@@ -5,7 +5,7 @@
     android:layout_height="fill_parent" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:contentDescription="@string/imageviewDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
             android:id="@+id/errorTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Error"
+            android:text="@string/errorTitle"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#fff"
@@ -40,7 +40,6 @@
             android:id="@+id/errorDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sample Error Message"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#fff"
             android:textSize="18sp" />

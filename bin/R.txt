@@ -124,7 +124,7 @@ int drawable spinner_5 0x7f02002a
 int drawable spinner_6 0x7f02002b
 int drawable spinner_7 0x7f02002c
 int drawable temp 0x7f02002d
-int id FrameLayout1 0x7f080014
+int id FrameLayout1 0x7f080015
 int id book_now 0x7f080010
 int id building 0x7f080026
 int id buildingContainer 0x7f080025
@@ -144,7 +144,6 @@ int id holo_dark 0x7f080005
 int id holo_light 0x7f080006
 int id hoursOfOperation 0x7f08001c
 int id hybrid 0x7f080004
-int id imageView1 0x7f080015
 int id initialLoadProgress 0x7f080019
 int id map 0x7f080030
 int id match_parent 0x7f08000c
@@ -153,6 +152,7 @@ int id menuItemImage 0x7f080032
 int id menuItemName 0x7f080033
 int id menuItemsLinearLayout 0x7f08002a
 int id monochrome 0x7f080013
+int id mytext 0x7f080014
 int id none 0x7f080000
 int id normal 0x7f080001
 int id noticeDivider 0x7f080024
@@ -179,14 +179,15 @@ int id tableRow3 0x7f08001e
 int id terrain 0x7f080003
 int id wrap_content 0x7f08000d
 int integer google_play_services_version 0x7f090000
-int layout activity_error 0x7f030000
-int layout activity_main 0x7f030001
-int layout activity_outlet_details 0x7f030002
-int layout fragment_map 0x7f030003
-int layout fragment_outlet 0x7f030004
-int layout fragment_specials 0x7f030005
-int layout inflate_menu_item_row 0x7f030006
-int layout inflate_outlet 0x7f030007
+int layout actionbar_title 0x7f030000
+int layout activity_error 0x7f030001
+int layout activity_main 0x7f030002
+int layout activity_outlet_details 0x7f030003
+int layout fragment_map 0x7f030004
+int layout fragment_outlet 0x7f030005
+int layout fragment_specials 0x7f030006
+int layout inflate_menu_item_row 0x7f030007
+int layout inflate_outlet 0x7f030008
 int string app_name 0x7f07001a
 int string common_google_play_services_enable_button 0x7f07000b
 int string common_google_play_services_enable_text 0x7f07000a
@@ -214,6 +215,7 @@ int string common_google_play_services_update_title 0x7f07000c
 int string common_signin_button_text 0x7f070017
 int string common_signin_button_text_long 0x7f070018
 int string errorTitle 0x7f07001e
+int string imageviewDesc 0x7f07001f
 int string tab_text_map 0x7f07001d
 int string tab_text_outlet 0x7f07001b
 int string tab_text_specials 0x7f07001c

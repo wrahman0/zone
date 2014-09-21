@@ -41,6 +41,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+		getActionBar().setCustomView(R.layout.actionbar_title);
+		
 		RequestInformation requestInformation = new RequestInformation(this);
 		if ( !DeviceNetwork.isNetworkAvailable(this) && 
 				(requestInformation.locationUpdateRequired() || requestInformation.menuUpdateRequired())){

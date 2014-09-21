@@ -11,5 +11,7 @@
     
     <!-- Error -->
     <string name="errorTitle">Error</string>
+    
+    <string name="imageviewDesc">Contains Image of Service</string>
 
 </resources>

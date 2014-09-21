@@ -8,6 +8,7 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -15,7 +16,7 @@ import android.util.Log;
 import com.wasiur.parser.Outlet;
 import com.wasiur.uwfood.MainActivity;
 
-public class OutletLogic {
+@SuppressLint("SimpleDateFormat") public class OutletLogic {
 
 	public boolean isOutletOpen(Outlet outlet){
 		try{

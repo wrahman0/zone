@@ -472,7 +472,7 @@ containing a value of this type.
         public static final int temp=0x7f02002d;
     }
     public static final class id {
-        public static final int FrameLayout1=0x7f080014;
+        public static final int FrameLayout1=0x7f080015;
         public static final int book_now=0x7f080010;
         public static final int building=0x7f080026;
         public static final int buildingContainer=0x7f080025;
@@ -492,7 +492,6 @@ containing a value of this type.
         public static final int holo_light=0x7f080006;
         public static final int hoursOfOperation=0x7f08001c;
         public static final int hybrid=0x7f080004;
-        public static final int imageView1=0x7f080015;
         public static final int initialLoadProgress=0x7f080019;
         public static final int map=0x7f080030;
         public static final int match_parent=0x7f08000c;
@@ -501,6 +500,7 @@ containing a value of this type.
         public static final int menuItemName=0x7f080033;
         public static final int menuItemsLinearLayout=0x7f08002a;
         public static final int monochrome=0x7f080013;
+        public static final int mytext=0x7f080014;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
         public static final int noticeDivider=0x7f080024;
@@ -531,14 +531,15 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f090000;
     }
     public static final class layout {
-        public static final int activity_error=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_outlet_details=0x7f030002;
-        public static final int fragment_map=0x7f030003;
-        public static final int fragment_outlet=0x7f030004;
-        public static final int fragment_specials=0x7f030005;
-        public static final int inflate_menu_item_row=0x7f030006;
-        public static final int inflate_outlet=0x7f030007;
+        public static final int actionbar_title=0x7f030000;
+        public static final int activity_error=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_outlet_details=0x7f030003;
+        public static final int fragment_map=0x7f030004;
+        public static final int fragment_outlet=0x7f030005;
+        public static final int fragment_specials=0x7f030006;
+        public static final int inflate_menu_item_row=0x7f030007;
+        public static final int inflate_outlet=0x7f030008;
     }
     public static final class string {
         /**  App 
@@ -636,6 +637,7 @@ containing a value of this type.
         /**  Error 
          */
         public static final int errorTitle=0x7f07001e;
+        public static final int imageviewDesc=0x7f07001f;
         public static final int tab_text_map=0x7f07001d;
         /**  Tabs 
          */

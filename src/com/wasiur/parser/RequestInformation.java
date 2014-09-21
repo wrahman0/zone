@@ -1,9 +1,6 @@
 package com.wasiur.parser;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +8,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.wasiur.database.DBAdapterLocation;
 import com.wasiur.database.DBAdapterMenu;

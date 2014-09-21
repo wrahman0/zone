@@ -1,13 +1,12 @@
 package com.wasiur.flickr;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.wasiur.uwfood.MainActivity;
-
 import android.util.Log;
 import android.widget.ImageView;
+
+import com.wasiur.uwfood.MainActivity;
 
 public class FlickrService {
 	
@@ -18,19 +17,6 @@ public class FlickrService {
 	}
 	
 	public static String extractFlickrUrl(JSONObject flickrResponse){
-		
-		//https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-//		 {
-//             "id": "7109363649",
-//             "owner": "46100774@N04",
-//             "secret": "d6dda1b493",
-//             "server": "7109",
-//             "farm": 8,
-//             "title": "before the french toast...",
-//             "ispublic": 1,
-//             "isfriend": 0,
-//             "isfamily": 0
-//         }
 		
 		try {
 			
