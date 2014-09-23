@@ -495,9 +495,9 @@ containing a value of this type.
         public static final int initialLoadProgress=0x7f080019;
         public static final int map=0x7f080030;
         public static final int match_parent=0x7f08000c;
-        public static final int menuItemCalories=0x7f080034;
-        public static final int menuItemImage=0x7f080032;
-        public static final int menuItemName=0x7f080033;
+        public static final int menuItemCalories=0x7f080035;
+        public static final int menuItemImage=0x7f080033;
+        public static final int menuItemName=0x7f080034;
         public static final int menuItemsLinearLayout=0x7f08002a;
         public static final int monochrome=0x7f080013;
         public static final int mytext=0x7f080014;
@@ -508,9 +508,10 @@ containing a value of this type.
         public static final int outletDescriptionContainer=0x7f08001f;
         public static final int outletLogo=0x7f08002b;
         public static final int outletName=0x7f08001b;
+        public static final int outletNameSeperator=0x7f080037;
         public static final int outletNotice=0x7f080023;
         public static final int outletNoticeContainer=0x7f080022;
-        public static final int outletRowToInflate=0x7f080035;
+        public static final int outletRowToInflate=0x7f080036;
         public static final int outletStatus=0x7f08002c;
         public static final int pager=0x7f080018;
         public static final int production=0x7f080007;
@@ -518,6 +519,7 @@ containing a value of this type.
         public static final int satellite=0x7f080002;
         public static final int scrollView1=0x7f080029;
         public static final int scrollViewOutletLinearLayout=0x7f080031;
+        public static final int scrollViewSpecialsLinearLayout=0x7f080032;
         public static final int selectionDetails=0x7f08000b;
         public static final int slidingDrawer1=0x7f08002d;
         public static final int strict_sandbox=0x7f080009;
@@ -540,6 +542,7 @@ containing a value of this type.
         public static final int fragment_specials=0x7f030006;
         public static final int inflate_menu_item_row=0x7f030007;
         public static final int inflate_outlet=0x7f030008;
+        public static final int inflate_outlet_name_seperators=0x7f030009;
     }
     public static final class string {
         /**  App 

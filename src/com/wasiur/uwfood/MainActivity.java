@@ -2,6 +2,8 @@ package com.wasiur.uwfood;
 
 import java.sql.SQLException;
 
+import org.json.JSONObject;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -14,17 +16,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.wasiur.adapter.TabsPagerAdapter;
 import com.wasiur.database.DBAdapterLocation;
 import com.wasiur.database.DBAdapterMenu;
 import com.wasiur.devicestatus.DeviceNetwork;
+import com.wasiur.flickr.FlickrService;
+import com.wasiur.flickr.OnFlickrResponse;
 import com.wasiur.napkins.R;
 import com.wasiur.parser.ParserResponse;
 import com.wasiur.parser.RequestInformation;
 import com.wasiur.parser.ResponseHolder;
 import com.wasiur.render.MainScreenRender;
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ParserResponse{
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ParserResponse, OnFlickrResponse{
 
 	public static final String sTAG = "UWFood";
 	private ResponseHolder mResponseHolder;
@@ -196,5 +201,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		}
 		dbM.close();
 
+	}
+
+	@Override
+	public void FlickrResponse(JSONObject response,
+			ImageView destinationImageView) {
+		Picasso.with(this).load(FlickrService.extractFlickrUrl(response)).into(destinationImageView);
 	}
 }
