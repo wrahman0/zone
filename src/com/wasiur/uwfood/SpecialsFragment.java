@@ -16,6 +16,9 @@ public class SpecialsFragment extends Fragment{
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.fragment_specials, container, false);
+		
+		
+		
 		return rootView;
 	}
 }

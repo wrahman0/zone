@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -28,13 +29,15 @@ import com.wasiur.googlemap.LocationLogic;
 import com.wasiur.googlemap.MapRender;
 import com.wasiur.napkins.R;
 import com.wasiur.parser.Outlet;
+import com.wasiur.parser.ParserResponse;
+import com.wasiur.parser.ResponseHolder;
 import com.wasiur.render.OutletLogic;
 import com.wasiur.render.RowInflater;
 
-public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
-	
+public class OutletDetailsActivity extends Activity implements OnFlickrResponse, ParserResponse{
+
 	private Outlet mOutlet;
-	
+
 	//Views
 	private TextView outletName;
 	private TextView hoursOfOperation;
@@ -44,14 +47,20 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 	private TextView outletNotice;
 	private TextView debitAccepted;
 	private TextView building;
-	
+
 	private LinearLayout menuItemsLinearLayout;
 	
+//	private AnimationDrawable mLoadAnimation;
+//	private ImageView mInitialLoadProgress;
+	
+//	private LinearLayout mMasterContainer;
+//	private LinearLayout mProgressContainer;
+
 	//Google Map Values
 	private GoogleMap googleMap;
 	private String initialLocation = "Waterloo University";
 	private float initialZoom = 14.0f;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,44 +70,36 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 		getActionBar().setCustomView(R.layout.actionbar_title);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		try {
-			this.mOutlet = new Outlet(this, new JSONObject(getIntent().getStringExtra("com.wasiur.rawlocationjson")));
-			this.mOutlet.getMenuFromJSON(new JSONArray(getIntent().getStringExtra("com.wasiur.rawmenujson")));
-		} catch (JSONException e) {
-			Log.e(MainActivity.sTAG, "Could not generate JSONObject from intent");
-			e.printStackTrace();
-		}
-		
-		findViews();
-		setViewText();
-		initializeMap();
-		
-		MapRender.setInitialLocation(this, googleMap, initialLocation, initialZoom);
-		MapRender.dropMarker(googleMap, LocationLogic.getLatLngFromOutlet(mOutlet),	mOutlet.getOutlet_name());
-		
-		RowInflater.inflateMenuItems(this, menuItemsLinearLayout, mOutlet);
-		
+//		mInitialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
+//		mInitialLoadProgress.setBackgroundResource(R.anim.loading_spinner);
+//		mLoadAnimation = (AnimationDrawable) mInitialLoadProgress.getBackground();
+//		
+//		mMasterContainer = (LinearLayout) findViewById(R.id.container);
+//		mProgressContainer = (LinearLayout) findViewById(R.id.progressContainer);
+
+		new InitialLoad().execute();
+
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // app icon in action bar clicked; go home
-	        	finish();
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; go home
+			finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
+
 	private void initializeMap(){
 		if (googleMap == null){
 			googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 			if (googleMap == null) Toast.makeText(this, "Cannot Launch Google Map", Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	private void findViews(){
 		outletName = (TextView) findViewById(R.id.outletName);
 		hoursOfOperation = (TextView) findViewById(R.id.hoursOfOperation);
@@ -108,29 +109,29 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 		outletNotice = (TextView) findViewById(R.id.outletNotice);
 		debitAccepted = (TextView) findViewById(R.id.debitAccepted);
 		building = (TextView) findViewById(R.id.building);
-		
+
 		menuItemsLinearLayout = (LinearLayout) findViewById(R.id.menuItemsLinearLayout);
 	}
-	
+
 	private void setViewText(){
-		
+
 		//Setting outlet name with custom font
 		outletName.setText(mOutlet.getOutlet_name());
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Harabara.ttf");
 		outletName.setTypeface(custom_font);
 		outletName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-		
+
 		//Setting the hours of operation
 		OutletLogic outletLogic = new OutletLogic();
 		hoursOfOperation.setText(outletLogic.getOperationHoursText(outletLogic.getDayOfWeek(), mOutlet.getOpening_hours()));
-		
+
 		//Outlet Open/Close status light
 		if (!outletLogic.isOutletOpen(mOutlet)){
 			statusLight.setImageResource(R.drawable.red_status);
 		}else{
 			statusLight.setImageResource(R.drawable.green_status);
 		}
-		
+
 		//Outlet image loading
 		if (!String.valueOf(mOutlet.getLogo()).equals("null")) {
 			if (mOutlet.getOutlet_name().contains("Tim Hortons")){
@@ -143,7 +144,7 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 				Picasso.with(getBaseContext()).load("https://uwaterloo.ca/graduate-house/sites/ca.graduate-house/files/resize/styles/sidebar-220px-wide/public/uploads/images/GH%20LOGO%202012-150x150.JPG").into(outletLogo);	
 			}
 		}
-		
+
 		//Outlet description
 		if (!mOutlet.getDescription().equals("null") && mOutlet.getDescription().contains(".")){ //TODO: Better solution needed
 			outletDescription.setText(outletLogic.cleanDescription(mOutlet.getDescription()));
@@ -154,16 +155,16 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 			descriptionDivider.setVisibility(View.GONE);
 			outletDescriptionContainer.setVisibility(View.GONE);
 		}
-		
+
 		//Debit card
 		debitAccepted.setText("Debit Accepted");
-		
+
 		if (outletLogic.isDebitFriendly(mOutlet.getDescription())){
 			debitAccepted.setTextColor(getResources().getColor(R.color.fontColor));
 		}else{
 			debitAccepted.setTextColor(getResources().getColor(R.color.disabled));
 		}
-		
+
 		//Notice
 		if (!mOutlet.getNotice().equals("null")){
 			outletNotice.setText(outletLogic.cleanNotice(mOutlet.getNotice()));
@@ -174,7 +175,7 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 			noticeDivider.setVisibility(View.GONE);
 			outletNoticeContainer.setVisibility(View.GONE);
 		}
-		
+
 		//Building
 		if (mOutlet.getBuilding().isEmpty() || mOutlet.getBuilding().equals("null")){
 			View buildingDivider = (View) findViewById(R.id.buildingDivider);
@@ -184,14 +185,87 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 		}else{
 			building.setText(outletLogic.getBuilding(mOutlet.getBuilding()));
 		}
-		
+
+	}
+
+	private class InitialLoad extends AsyncTask<Void, Void, Void>{
+
+		@Override
+		protected void onPreExecute() {
+//			mProgressContainer.setVisibility(View.VISIBLE);
+//			mMasterContainer.setVisibility(View.INVISIBLE);
+//			startProgressSpinner();
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				mOutlet = new Outlet(OutletDetailsActivity.this, new JSONObject(getIntent().getStringExtra("com.wasiur.rawlocationjson")));
+				mOutlet.getMenuFromJSON(new JSONArray(getIntent().getStringExtra("com.wasiur.rawmenujson")));
+			} catch (JSONException e) {
+				Log.e(MainActivity.sTAG, "Could not generate JSONObject from intent");
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			try{	
+				findViews();
+				setViewText();
+				initializeMap();
+
+				MapRender.setInitialLocation(OutletDetailsActivity.this, googleMap, initialLocation, initialZoom);
+				MapRender.dropMarker(googleMap, LocationLogic.getLatLngFromOutlet(mOutlet),	mOutlet.getOutlet_name());
+
+				RowInflater.inflateMenuItems(OutletDetailsActivity.this, menuItemsLinearLayout, mOutlet);
+//				stopProgressSpinner();
+//				mProgressContainer.setVisibility(View.GONE);
+//				mMasterContainer.setVisibility(View.VISIBLE);
+				
+			}catch(NullPointerException e){
+				Log.e(MainActivity.sTAG, "Could not initialize google maps. Likely since application was killed");
+				e.printStackTrace();
+			}
+			super.onPostExecute(result);
+		}
+
 	}
 
 	@Override
 	public void FlickrResponse(JSONObject response,ImageView destinationImageView) {
 		Picasso.with(getBaseContext()).load(FlickrService.extractFlickrUrl(response)).into(destinationImageView);
 	}
-	
-	
+
+	@Override
+	public void onParseComplete(ResponseHolder responseHolder) {
+		// TODO Auto-generated method stub
+	}
+
+	public void startProgressSpinner(){
+//		mLoadAnimation.start();
+//		mInitialLoadProgress.setVisibility(View.VISIBLE);
+	}
+
+	public void stopProgressSpinner(){
+//		mInitialLoadProgress.setVisibility(View.GONE);
+//		mLoadAnimation.stop();
+	}
+
+	@Override
+	public void initializeTabs() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void initializeTabs(ResponseHolder responseHolder) {
+		// TODO Auto-generated method stub
+
+	}
+
+
 
 }

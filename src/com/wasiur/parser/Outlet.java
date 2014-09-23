@@ -156,7 +156,6 @@ public class Outlet implements Serializable{
 	
 	//This method adds the menu if there is any for the current Outlet. Check using the outlet id
 	public void getMenuFromJSON(JSONArray dailyMenuList){
-//		Log.e(MainActivity.TAG, "Generating Menu from the JSON: " + dailyMenuList.toString());
 		this.rawMenuJSON = dailyMenuList.toString();
 		
 		JSONObject menu = null;
@@ -173,7 +172,6 @@ public class Outlet implements Serializable{
 		}
 		
 		if(menu!=null){
-//			Log.i(MainActivity.TAG, "Corresponding menu for " + this.outlet_name + " is " + menu.toString());
 			weeklyMenuByDay = new ArrayList<DailySpecials>();
 			
 			try {
