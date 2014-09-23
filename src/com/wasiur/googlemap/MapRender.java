@@ -20,9 +20,12 @@ public class MapRender {
 	}
 
 	public static void dropMarker(GoogleMap map, LatLng latLng, String title){
-		map.addMarker( new MarkerOptions()
-		.position(latLng)
-		.title(title));
+		if (!title.equals("Its me")){
+			map.addMarker( new MarkerOptions()
+			.position(latLng)
+			.title(title));
+		}
+		
 	}
 
 	public static void setInitialLocation(Context context, final GoogleMap googleMap, String initialLocation, float initialZoom) {

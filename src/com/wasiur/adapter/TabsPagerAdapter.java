@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.wasiur.parser.ResponseHolder;
-import com.wasiur.uwfood.MapFragment;
+import com.wasiur.uwfood.GoogleMapFragment;
 import com.wasiur.uwfood.OutletFragment;
 import com.wasiur.uwfood.SpecialsFragment;
 
@@ -35,7 +35,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 			specials.setArguments(bundle);
 			return specials;
 		case 2:
-			MapFragment map = new MapFragment();
+			GoogleMapFragment map = new GoogleMapFragment();
 			map.setArguments(bundle);
 			return map;
 		}

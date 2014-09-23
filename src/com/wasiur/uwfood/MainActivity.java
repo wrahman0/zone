@@ -53,7 +53,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		getActionBar().setCustomView(R.layout.actionbar_title);
 		
 		mViewPager = (ViewPager) findViewById(R.id.pager);
-
+		mViewPager.setOffscreenPageLimit(3);
+		
 		mInitialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
 		mInitialLoadProgress.setBackgroundResource(R.anim.loading_spinner);
 		mLoadAnimation = (AnimationDrawable) mInitialLoadProgress.getBackground();
