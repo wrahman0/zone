@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.uwfood.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -28,6 +26,7 @@ import com.wasiur.flickr.FlickrService;
 import com.wasiur.flickr.OnFlickrResponse;
 import com.wasiur.googlemap.LocationLogic;
 import com.wasiur.googlemap.MapRender;
+import com.wasiur.napkins.R;
 import com.wasiur.parser.Outlet;
 import com.wasiur.render.OutletLogic;
 import com.wasiur.render.RowInflater;
@@ -66,7 +65,7 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 			this.mOutlet = new Outlet(this, new JSONObject(getIntent().getStringExtra("com.wasiur.rawlocationjson")));
 			this.mOutlet.getMenuFromJSON(new JSONArray(getIntent().getStringExtra("com.wasiur.rawmenujson")));
 		} catch (JSONException e) {
-			Log.e(MainActivity.TAG, "Could not generate JSONObject from intent");
+			Log.e(MainActivity.sTAG, "Could not generate JSONObject from intent");
 			e.printStackTrace();
 		}
 		
@@ -149,7 +148,7 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 		if (!mOutlet.getDescription().equals("null") && mOutlet.getDescription().contains(".")){ //TODO: Better solution needed
 			outletDescription.setText(outletLogic.cleanDescription(mOutlet.getDescription()));
 		}else{
-			Log.i(MainActivity.TAG,"Removing description view");
+			Log.i(MainActivity.sTAG,"Removing description view");
 			View descriptionDivider = (View) findViewById(R.id.descriptionDivider);
 			LinearLayout outletDescriptionContainer = (LinearLayout) findViewById(R.id.outletDescriptionContainer);
 			descriptionDivider.setVisibility(View.GONE);
@@ -169,7 +168,7 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse{
 		if (!mOutlet.getNotice().equals("null")){
 			outletNotice.setText(outletLogic.cleanNotice(mOutlet.getNotice()));
 		}else{
-			Log.i(MainActivity.TAG,"Removing notice view");
+			Log.i(MainActivity.sTAG,"Removing notice view");
 			View noticeDivider = (View) findViewById(R.id.noticeDivider);
 			LinearLayout outletNoticeContainer = (LinearLayout) findViewById(R.id.outletNoticeContainer);
 			noticeDivider.setVisibility(View.GONE);

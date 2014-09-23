@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.example.uwfood.R;
+import com.wasiur.napkins.R;
 
 public class ErrorActivity extends Activity {
 

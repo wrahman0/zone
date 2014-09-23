@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.uwfood.R;
+import com.wasiur.napkins.R;
 import com.wasiur.parser.ResponseHolder;
 import com.wasiur.render.RowInflater;
 

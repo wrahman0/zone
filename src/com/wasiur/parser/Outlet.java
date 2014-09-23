@@ -53,7 +53,7 @@ public class Outlet implements Serializable{
 			this.outlet_id = location.getInt("outlet_id");
 		} catch (JSONException e) {
 			this.outlet_id = -1;
-			Log.e(MainActivity.TAG, "Outlet id is set to -1");
+			Log.e(MainActivity.sTAG, "Outlet id is set to -1");
 			e.printStackTrace();
 		}
 		
@@ -61,7 +61,7 @@ public class Outlet implements Serializable{
 			this.outlet_name = location.getString("outlet_name");
 		} catch (JSONException e) {
 			this.outlet_name = null;
-			Log.e(MainActivity.TAG, "Outlet name is set to null");
+			Log.e(MainActivity.sTAG, "Outlet name is set to null");
 			e.printStackTrace();
 		}
 		
@@ -69,7 +69,7 @@ public class Outlet implements Serializable{
 			this.building = location.getString("building");
 		} catch (JSONException e) {
 			this.building = null;
-			Log.e(MainActivity.TAG, "Building is set to null");
+			Log.e(MainActivity.sTAG, "Building is set to null");
 			e.printStackTrace();
 		}
 		
@@ -77,11 +77,11 @@ public class Outlet implements Serializable{
 			this.logo = new URL(location.getString("logo"));
 		} catch (JSONException e) {
 			this.logo = null;
-			Log.e(MainActivity.TAG, "Logo is set to null");
+			Log.e(MainActivity.sTAG, "Logo is set to null");
 			e.printStackTrace();
 		} catch (MalformedURLException e){
 			this.logo = null;
-			Log.e(MainActivity.TAG, "Could not parse the URL information");
+			Log.e(MainActivity.sTAG, "Could not parse the URL information");
 			e.printStackTrace();
 		}
 		
@@ -89,7 +89,7 @@ public class Outlet implements Serializable{
 			this.latitude = (float) location.getDouble("latitude");
 		} catch (JSONException e) {
 			this.latitude = -1;
-			Log.e(MainActivity.TAG, "Latitude was set to -1");
+			Log.e(MainActivity.sTAG, "Latitude was set to -1");
 			e.printStackTrace();
 		}
 		
@@ -97,7 +97,7 @@ public class Outlet implements Serializable{
 			this.longitude = (float) location.getDouble("longitude");
 		} catch (JSONException e) {
 			this.longitude = -1;
-			Log.e(MainActivity.TAG, "Longitude was set to -1");
+			Log.e(MainActivity.sTAG, "Longitude was set to -1");
 			e.printStackTrace();
 		} 
 		
@@ -105,7 +105,7 @@ public class Outlet implements Serializable{
 			this.description = location.getString("description");
 		} catch (JSONException e) {
 			this.description = null;
-			Log.e(MainActivity.TAG, "Description was set to null");
+			Log.e(MainActivity.sTAG, "Description was set to null");
 			e.printStackTrace();
 		} 
 		
@@ -113,7 +113,7 @@ public class Outlet implements Serializable{
 			this.notice = location.getString("notice");
 		} catch (JSONException e) {
 			this.notice = null;
-			Log.e(MainActivity.TAG, "Notice was set to null");
+			Log.e(MainActivity.sTAG, "Notice was set to null");
 			e.printStackTrace();
 		} 		
 		
@@ -121,7 +121,7 @@ public class Outlet implements Serializable{
 			this.is_open_now = location.getBoolean("is_open_now");
 		} catch (JSONException e) {
 			this.is_open_now = false;
-			Log.e(MainActivity.TAG, "Is open now was set to false");
+			Log.e(MainActivity.sTAG, "Is open now was set to false");
 			e.printStackTrace();
 		}
 		
@@ -129,7 +129,7 @@ public class Outlet implements Serializable{
 			this.opening_hours = location.getJSONObject("opening_hours");
 		} catch (JSONException e) {
 			this.opening_hours = null;
-			Log.e(MainActivity.TAG, "Opening hours was set to null");
+			Log.e(MainActivity.sTAG, "Opening hours was set to null");
 			e.printStackTrace();
 		}
 		
@@ -137,7 +137,7 @@ public class Outlet implements Serializable{
 			this.special_hours = location.getJSONArray("special_hours");
 		} catch (JSONException e) {
 			this.special_hours = null;
-			Log.e(MainActivity.TAG, "Special hours was set to null");
+			Log.e(MainActivity.sTAG, "Special hours was set to null");
 			e.printStackTrace();
 		}
 		
@@ -145,7 +145,7 @@ public class Outlet implements Serializable{
 			this.dates_closed = location.getJSONArray("dates_closed");
 		} catch (JSONException e) {
 			this.dates_closed = null;
-			Log.e(MainActivity.TAG, "Dates closed was set to null");
+			Log.e(MainActivity.sTAG, "Dates closed was set to null");
 			e.printStackTrace();
 		}
 		
@@ -167,7 +167,7 @@ public class Outlet implements Serializable{
 					menu = dailyMenuList.getJSONObject(i); //found the menu
 				}
 			} catch (JSONException e) {
-				Log.e(MainActivity.TAG, "Could not parse outlet_id in menu object");
+				Log.e(MainActivity.sTAG, "Could not parse outlet_id in menu object");
 				e.printStackTrace();
 			}
 		}
@@ -179,18 +179,18 @@ public class Outlet implements Serializable{
 			try {
 				
 				JSONArray tempMenu = menu.getJSONArray("menu");	
-				if (tempMenu.length() > 5) Log.e(MainActivity.TAG, "ALERT, MENU LENGTH IS GREATER THAN 7. Unhandled Exceptions expected");
+				if (tempMenu.length() > 5) Log.e(MainActivity.sTAG, "ALERT, MENU LENGTH IS GREATER THAN 7. Unhandled Exceptions expected");
 				for (int i = 0; i < tempMenu.length(); i++){
 					weeklyMenuByDay.add(new DailySpecials(mContext, tempMenu.getJSONObject(i)));
 				}
 				
 			} catch (JSONException e) {
-				Log.e(MainActivity.TAG, "Daily Menu Parsing Error");
+				Log.e(MainActivity.sTAG, "Daily Menu Parsing Error");
 				e.printStackTrace();
 			}
 			
 		}else{
-			Log.i(MainActivity.TAG, "Corresponding menu for " + this.outlet_name + " is null");
+			Log.i(MainActivity.sTAG, "Corresponding menu for " + this.outlet_name + " is null");
 		}
 		
 	}

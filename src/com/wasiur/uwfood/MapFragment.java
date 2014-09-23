@@ -1,12 +1,12 @@
 package com.wasiur.uwfood;
 
-import com.example.uwfood.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.wasiur.napkins.R;
 
 public class MapFragment extends Fragment{
 	@Override

@@ -32,7 +32,7 @@ public class FlickrRequest extends AsyncTask<String, String, String>{
 	
 	public FlickrRequest(String query, OnFlickrResponse listener, ImageView destImage){
 		
-		Log.i(MainActivity.TAG, "Requesting Flickr Services");
+		Log.i(MainActivity.sTAG, "Requesting Flickr Services");
 		this.listener = listener;
 		this.destImage = destImage;
 		
@@ -40,7 +40,7 @@ public class FlickrRequest extends AsyncTask<String, String, String>{
 			String encodedUrl = URLEncoder.encode(query,"utf-8");
 			this.encodedQuery = encodedUrl;
 		} catch (UnsupportedEncodingException e) {
-			Log.e(MainActivity.TAG, "Could not encode flickr url");
+			Log.e(MainActivity.sTAG, "Could not encode flickr url");
 			e.printStackTrace();
 		}
 		
@@ -70,10 +70,10 @@ public class FlickrRequest extends AsyncTask<String, String, String>{
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
-        	Log.e(MainActivity.TAG,"Client Protocol Exception");
+        	Log.e(MainActivity.sTAG,"Client Protocol Exception");
             e.printStackTrace();
         } catch (IOException e) {
-        	Log.e(MainActivity.TAG,"IO Exception");
+        	Log.e(MainActivity.sTAG,"IO Exception");
         	e.printStackTrace();
         }
 		
@@ -83,13 +83,13 @@ public class FlickrRequest extends AsyncTask<String, String, String>{
 	@Override
 	protected void onPostExecute(String result) {
 		//Build response JSON
-		Log.i(MainActivity.TAG, "RAW RESP" + result.substring(14,result.length()-1));
+		Log.i(MainActivity.sTAG, "RAW RESP" + result.substring(14,result.length()-1));
 		try {
 			JSONObject flickrResponse = new JSONObject (result.substring(14,result.length()-1));
-			Log.i(MainActivity.TAG, "Sending Flickr response object" + flickrResponse.toString());
+			Log.i(MainActivity.sTAG, "Sending Flickr response object" + flickrResponse.toString());
 			this.listener.FlickrResponse(flickrResponse, destImage);
 		} catch (JSONException e) {
-			Log.e(MainActivity.TAG, "Unable to build flickr response json");
+			Log.e(MainActivity.sTAG, "Unable to build flickr response json");
 			e.printStackTrace();
 		}
 		super.onPostExecute(result);

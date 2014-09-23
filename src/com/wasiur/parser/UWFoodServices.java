@@ -63,6 +63,15 @@ public class UWFoodServices {
 	}
 
 	private class MyAsyncTask extends AsyncTask<String, String, String>{
+		
+		
+		@Override
+		protected void onPreExecute() {
+			Log.i(MainActivity.sTAG,"Starting Progress Spinner");
+			listener.startProgressSpinner();
+			super.onPreExecute();
+		}
+
 		@Override
 		protected String doInBackground(String... args) {
 			try {	
@@ -108,18 +117,24 @@ public class UWFoodServices {
 
 		@Override
 		protected void onPostExecute(String result) {
-			
 			//Build the outlet objects and store them into an arraylist. Get the outlet objects through the get methods
 			//Separate the menu and location objects by different outlets
 			if (getLocationResponse()!=null && getMenuResponse()!=null){
-				Log.i(MainActivity.TAG, "CREATING RESPONSE HOLDER");
+				Log.i(MainActivity.sTAG, "CREATING RESPONSE HOLDER");
 				setResponseHolder(new ResponseHolder(mContext, getLocationResponse(), getMenuResponse()));
-				listener.onParseComplete(getResponseHolder());	
+				Log.i(MainActivity.sTAG,"Stopping Progress Spinner");
+				listener.stopProgressSpinner();
+				listener.onParseComplete(getResponseHolder());
+				listener.initializeTabs();
 			}else{
-				Log.e(MainActivity.TAG, "Response Holder is null");
+				Log.e(MainActivity.sTAG, "Response Holder is null");
 				setResponseHolder(null);
-				listener.onParseComplete(null);	
+				Log.i(MainActivity.sTAG,"Stopping Progress Spinner");
+				listener.stopProgressSpinner();
+				listener.onParseComplete(null);
+				listener.initializeTabs();
 			}
+			
 		}
 	}
 

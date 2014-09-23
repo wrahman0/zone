@@ -14,12 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.uwfood.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 import com.wasiur.devicestatus.DeviceNetwork;
 import com.wasiur.flickr.FlickrService;
 import com.wasiur.flickr.OnFlickrResponse;
+import com.wasiur.napkins.R;
 import com.wasiur.parser.DailySpecials;
 import com.wasiur.parser.MenuItem;
 import com.wasiur.parser.Outlet;

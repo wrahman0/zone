@@ -59,26 +59,26 @@ public class MenuItem {
 		
 		try{
 			this.productName = menuJSON.getString("product_name");
-			Log.i(MainActivity.TAG, "Product name: " + productName); 
+			Log.i(MainActivity.sTAG, "Product name: " + productName); 
 		} catch (JSONException e){
-			Log.e(MainActivity.TAG, "Product name parse error. Setting to null");
+			Log.e(MainActivity.sTAG, "Product name parse error. Setting to null");
 			this.productName = null;
 			e.printStackTrace();
 		}
 		
 		try{
 			this.productId = menuJSON.getInt("product_id");
-			Log.i(MainActivity.TAG, "Product ID: " + productId);
+			Log.i(MainActivity.sTAG, "Product ID: " + productId);
 		} catch (JSONException e){
-			Log.i(MainActivity.TAG, "Product id set to -1");
+			Log.i(MainActivity.sTAG, "Product id set to -1");
 			this.productId = -1;
 		}
 		
 		try{
 			this.dietType = menuJSON.getString("diet_type");
-			Log.i(MainActivity.TAG, "Diet Type: " + dietType);
+			Log.i(MainActivity.sTAG, "Diet Type: " + dietType);
 		} catch (JSONException e){
-			Log.i(MainActivity.TAG, "Diet Type set to null");
+			Log.i(MainActivity.sTAG, "Diet Type set to null");
 			this.dietType = null;
 		}	
 		
@@ -91,16 +91,16 @@ public class MenuItem {
 		    String inputStr;
 		    while ((inputStr = streamReader.readLine()) != null) responseStrBuilder.append(inputStr);
 		    productJSON = new JSONObject(responseStrBuilder.toString());
-			Log.i(MainActivity.TAG, "Parsing product information for " + productName + ":\n" + productJSON.toString());
+			Log.i(MainActivity.sTAG, "Parsing product information for " + productName + ":\n" + productJSON.toString());
 		} catch (IOException e) {
 			productJSON = null;
 			if (productId != -1){
-				Log.e(MainActivity.TAG, "Could not open stream for " + productName);
+				Log.e(MainActivity.sTAG, "Could not open stream for " + productName);
 				e.printStackTrace();
 			}
 		} catch (JSONException e){
 			productJSON = null;
-			Log.e(MainActivity.TAG, "Could not parse the product JSON from the textfile for " + productName);
+			Log.e(MainActivity.sTAG, "Could not parse the product JSON from the textfile for " + productName);
 			e.printStackTrace();
 		}
 		
@@ -115,19 +115,19 @@ public class MenuItem {
 		
 		try {
 			this.tags = this.productJSON.getJSONObject("data").getJSONArray("tags");
-			Log.i(MainActivity.TAG, "Tags for " + this.productName + ": " + this.tags.toString() );
+			Log.i(MainActivity.sTAG, "Tags for " + this.productName + ": " + this.tags.toString() );
 		} catch (JSONException e) {
 			this.tags = null;
-			Log.e(MainActivity.TAG, "Could not parse tags");
+			Log.e(MainActivity.sTAG, "Could not parse tags");
 			e.printStackTrace();
 		}
 		
 		try{
 			this.ingredients = new ArrayList<String>(Arrays.asList(this.productJSON.getJSONObject("data").getString("ingredients").split(", ")));
-			Log.i(MainActivity.TAG, "Ingredients for " + this.productName + ": " + this.ingredients.toString() );
+			Log.i(MainActivity.sTAG, "Ingredients for " + this.productName + ": " + this.ingredients.toString() );
 		}catch (JSONException e) {
 			this.ingredients = null;
-			Log.e(MainActivity.TAG, "Could not parse ingredients");
+			Log.e(MainActivity.sTAG, "Could not parse ingredients");
 			e.printStackTrace();
 		}		
 		
@@ -135,7 +135,7 @@ public class MenuItem {
 			this.calcium_percent = this.productJSON.getJSONObject("data").getInt("calcium_percent");
 		}catch (JSONException e) {
 			this.calcium_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse calcium_percent");
+			Log.e(MainActivity.sTAG, "Could not parse calcium_percent");
 			e.printStackTrace();
 		}
 		
@@ -143,7 +143,7 @@ public class MenuItem {
 			this.calories = this.productJSON.getJSONObject("data").getInt("calories");
 		}catch (JSONException e) {
 			this.calories = -1;
-			Log.e(MainActivity.TAG, "Could not parse calories");
+			Log.e(MainActivity.sTAG, "Could not parse calories");
 			e.printStackTrace();
 		}
 		
@@ -151,7 +151,7 @@ public class MenuItem {
 			this.carbo_fibre_g = this.productJSON.getJSONObject("data").getInt("carbo_fibre_g");
 		}catch (JSONException e) {
 			this.carbo_fibre_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse carbo_fibre_g");
+			Log.e(MainActivity.sTAG, "Could not parse carbo_fibre_g");
 			e.printStackTrace();
 		}
 		
@@ -159,7 +159,7 @@ public class MenuItem {
 			this.carbo_fibre_percent = this.productJSON.getJSONObject("data").getInt("carbo_fibre_percent");
 		}catch (JSONException e) {
 			this.carbo_fibre_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse carbo_fibre_percent");
+			Log.e(MainActivity.sTAG, "Could not parse carbo_fibre_percent");
 			e.printStackTrace();
 		}
 		
@@ -167,7 +167,7 @@ public class MenuItem {
 			this.carbo_sugars_g = this.productJSON.getJSONObject("data").getInt("carbo_sugars_g");
 		}catch (JSONException e) {
 			this.carbo_sugars_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse carbo_sugars_g");
+			Log.e(MainActivity.sTAG, "Could not parse carbo_sugars_g");
 			e.printStackTrace();
 		}
 		
@@ -175,7 +175,7 @@ public class MenuItem {
 			this.cholesterol_mg = this.productJSON.getJSONObject("data").getInt("cholesterol_mg");
 		}catch (JSONException e) {
 			this.cholesterol_mg = -1;
-			Log.e(MainActivity.TAG, "Could not parse cholesterol_mg");
+			Log.e(MainActivity.sTAG, "Could not parse cholesterol_mg");
 			e.printStackTrace();
 		}
 		
@@ -183,7 +183,7 @@ public class MenuItem {
 			this.fat_saturated_g = this.productJSON.getJSONObject("data").getInt("fat_saturated_g");
 		}catch (JSONException e) {
 			this.fat_saturated_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse fat_saturated_g");
+			Log.e(MainActivity.sTAG, "Could not parse fat_saturated_g");
 			e.printStackTrace();
 		}
 		
@@ -191,7 +191,7 @@ public class MenuItem {
 			this.fat_saturated_percent = this.productJSON.getJSONObject("data").getInt("fat_saturated_percent");
 		}catch (JSONException e) {
 			this.fat_saturated_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse fat_saturated_percent");
+			Log.e(MainActivity.sTAG, "Could not parse fat_saturated_percent");
 			e.printStackTrace();
 		}
 		
@@ -199,7 +199,7 @@ public class MenuItem {
 			this.fat_trans_g = this.productJSON.getJSONObject("data").getInt("fat_trans_g");
 		}catch (JSONException e) {
 			this.fat_trans_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse fat_trans_g");
+			Log.e(MainActivity.sTAG, "Could not parse fat_trans_g");
 			e.printStackTrace();
 		}
 		
@@ -207,7 +207,7 @@ public class MenuItem {
 			this.fat_trans_percent = this.productJSON.getJSONObject("data").getInt("fat_trans_percent");
 		}catch (JSONException e) {
 			this.fat_trans_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse fat_trans_percent");
+			Log.e(MainActivity.sTAG, "Could not parse fat_trans_percent");
 			e.printStackTrace();
 		}
 		
@@ -215,7 +215,7 @@ public class MenuItem {
 			this.iron_percent = this.productJSON.getJSONObject("data").getInt("iron_percent");
 		}catch (JSONException e) {
 			this.iron_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse iron_percent");
+			Log.e(MainActivity.sTAG, "Could not parse iron_percent");
 			e.printStackTrace();
 		}
 		
@@ -223,7 +223,7 @@ public class MenuItem {
 			this.micro_nutrients = this.productJSON.getJSONObject("data").getString("micro_nutrients");
 		}catch (JSONException e) {
 			this.micro_nutrients = null;
-			Log.e(MainActivity.TAG, "Could not parse micro_nutrients");
+			Log.e(MainActivity.sTAG, "Could not parse micro_nutrients");
 			e.printStackTrace();
 		}
 		
@@ -231,7 +231,7 @@ public class MenuItem {
 			this.protein_g = this.productJSON.getJSONObject("data").getInt("protein_g");
 		}catch (JSONException e) {
 			this.protein_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse protein_g");
+			Log.e(MainActivity.sTAG, "Could not parse protein_g");
 			e.printStackTrace();
 		}
 		
@@ -239,7 +239,7 @@ public class MenuItem {
 			this.serving_size = this.productJSON.getJSONObject("data").getString("serving_size");
 		}catch (JSONException e) {
 			this.serving_size = null;
-			Log.e(MainActivity.TAG, "Could not parse serving_size");
+			Log.e(MainActivity.sTAG, "Could not parse serving_size");
 			e.printStackTrace();
 		}
 		
@@ -247,7 +247,7 @@ public class MenuItem {
 			this.serving_size_g = this.productJSON.getJSONObject("data").getString("serving_size_g");
 		}catch (JSONException e) {
 			this.serving_size_g = null;
-			Log.e(MainActivity.TAG, "Could not parse serving_size_g");
+			Log.e(MainActivity.sTAG, "Could not parse serving_size_g");
 			e.printStackTrace();
 		}
 		
@@ -255,7 +255,7 @@ public class MenuItem {
 			this.serving_size_ml = this.productJSON.getJSONObject("data").getString("serving_size_ml");
 		}catch (JSONException e) {
 			this.serving_size_ml = null;
-			Log.e(MainActivity.TAG, "Could not parse serving_size_ml");
+			Log.e(MainActivity.sTAG, "Could not parse serving_size_ml");
 			e.printStackTrace();
 		}
 		
@@ -263,7 +263,7 @@ public class MenuItem {
 			this.sodium_mg = this.productJSON.getJSONObject("data").getInt("sodium_mg");
 		}catch (JSONException e) {
 			this.sodium_mg = -1;
-			Log.e(MainActivity.TAG, "Could not parse sodium_mg");
+			Log.e(MainActivity.sTAG, "Could not parse sodium_mg");
 			e.printStackTrace();
 		}
 		
@@ -271,7 +271,7 @@ public class MenuItem {
 			this.total_fat_g = this.productJSON.getJSONObject("data").getInt("total_fat_g");
 		}catch (JSONException e) {
 			this.total_fat_g = -1;
-			Log.e(MainActivity.TAG, "Could not parse total_fat_g");
+			Log.e(MainActivity.sTAG, "Could not parse total_fat_g");
 			e.printStackTrace();
 		}
 		
@@ -279,7 +279,7 @@ public class MenuItem {
 			this.total_fat_percent = this.productJSON.getJSONObject("data").getInt("total_fat_percent");
 		}catch (JSONException e) {
 			this.total_fat_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse total_fat_percent");
+			Log.e(MainActivity.sTAG, "Could not parse total_fat_percent");
 			e.printStackTrace();
 		}
 		
@@ -287,7 +287,7 @@ public class MenuItem {
 			this.vitamin_a_percent = this.productJSON.getJSONObject("data").getInt("vitamin_a_percent");
 		}catch (JSONException e) {
 			this.vitamin_a_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse vitamin_a_percent");
+			Log.e(MainActivity.sTAG, "Could not parse vitamin_a_percent");
 			e.printStackTrace();
 		}
 		
@@ -295,7 +295,7 @@ public class MenuItem {
 			this.vitamin_c_percent = this.productJSON.getJSONObject("data").getInt("vitamin_c_percent");
 		}catch (JSONException e) {
 			this.vitamin_c_percent = -1;
-			Log.e(MainActivity.TAG, "Could not parse vitamin_c_percent");
+			Log.e(MainActivity.sTAG, "Could not parse vitamin_c_percent");
 			e.printStackTrace();
 		}
 		

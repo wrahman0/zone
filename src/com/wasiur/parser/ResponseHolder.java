@@ -34,10 +34,10 @@ public class ResponseHolder implements Serializable{
 		//Get Location Data
 		try {
 			this.locationData = location.getJSONArray("data");
-			Log.i(MainActivity.TAG, "Location Parsed");
+			Log.i(MainActivity.sTAG, "Location Parsed");
 		} catch (JSONException e) {
 			//This exception should not occur
-			Log.e(MainActivity.TAG, "Location could not be parsed from the raw location json");
+			Log.e(MainActivity.sTAG, "Location could not be parsed from the raw location json");
 			e.printStackTrace();
 		}
 		
@@ -45,12 +45,12 @@ public class ResponseHolder implements Serializable{
 		try{
 			this.menuDateInformation = menu.getJSONObject("data").getJSONObject("date");
 			this.menuForAllOutlets = menu.getJSONObject("data").getJSONArray("outlets");
-			Log.i(MainActivity.TAG, "Menu parsed");
+			Log.i(MainActivity.sTAG, "Menu parsed");
 		}catch(JSONException e){
 			//This exception may occur when the outlet does not offer daily specials
 			this.menuDateInformation = null;
 			this.menuForAllOutlets = null;
-			Log.i(MainActivity.TAG, "No menu data recieved");
+			Log.i(MainActivity.sTAG, "No menu data recieved");
 			e.printStackTrace();
 		}
 		
@@ -63,7 +63,7 @@ public class ResponseHolder implements Serializable{
 				outlet.getMenuFromJSON(menuForAllOutlets);
 				arrayListOfOutlets.add(outlet);
 			} catch (JSONException e) {
-				Log.e(MainActivity.TAG, "Could not generate outlet information from location data");
+				Log.e(MainActivity.sTAG, "Could not generate outlet information from location data");
 				e.printStackTrace();
 			}
 		}

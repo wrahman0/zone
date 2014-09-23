@@ -37,7 +37,7 @@ public class RequestInformation {
 				//Check if the date is expired
 				try {
 					JSONObject menuDateInfo = new JSONObject (cursor.getString(cursor.getColumnIndex(DBAdapterMenu.KEY_MENU)));
-					Log.i(MainActivity.TAG, "Expiration Date" + menuDateInfo.toString());
+					Log.i(MainActivity.sTAG, "Expiration Date" + menuDateInfo.toString());
 					
 					//WORKING CODE BELOW: ENABLE WHEN DONE DEVELOPMENT
 //					ArrayList<String> yymmdd = new ArrayList<String>(Arrays.asList(menuDateInfo.getString("end").split("-")));
@@ -57,7 +57,7 @@ public class RequestInformation {
 					return false;
 					
 				} catch (JSONException e) {
-					Log.e(MainActivity.TAG, "Could not parse date information from the Database");
+					Log.e(MainActivity.sTAG, "Could not parse date information from the Database");
 					e.printStackTrace();
 					return true;
 				}
@@ -84,15 +84,15 @@ public class RequestInformation {
 		try {
 			db.open();
 			if (db.getLocation().moveToFirst()){
-				Log.i(MainActivity.TAG, "Location Exists");
+				Log.i(MainActivity.sTAG, "Location Exists");
 				db.close();
 				return false;
 			}else{
-				Log.i(MainActivity.TAG, "Location data required");
+				Log.i(MainActivity.sTAG, "Location data required");
 				return true;
 			}
 		} catch (SQLException e) {
-			Log.e(MainActivity.TAG, "Could not open location database");
+			Log.e(MainActivity.sTAG, "Could not open location database");
 			return true;
 		} catch(Exception e){
 			return true;
@@ -101,13 +101,13 @@ public class RequestInformation {
 	}
 
 	public void parseInformation(ParserResponse response){
-		Log.i(MainActivity.TAG, "Parsing required");
+		Log.i(MainActivity.sTAG, "Parsing required");
 		UWFoodServices uwFoodServices = new UWFoodServices(mContext, response);
 		uwFoodServices.connect();
 	}
 	
 	public ResponseHolder setResponseHolder(){
-		Log.i(MainActivity.TAG, "Creating response holder with Database information");
+		Log.i(MainActivity.sTAG, "Creating response holder with Database information");
 		DBAdapterLocation location = new DBAdapterLocation(mContext);
 		DBAdapterMenu menu = new DBAdapterMenu(mContext);
 		
@@ -123,13 +123,13 @@ public class RequestInformation {
 						new JSONObject(locationCursor.getString(locationCursor.getColumnIndex(DBAdapterLocation.KEY_LOCATION))),
 						new JSONObject(menuCursor.getString(menuCursor.getColumnIndex(DBAdapterMenu.KEY_INFO))));	
 			}else{
-				Log.e(MainActivity.TAG, "Could not find correct information in the database");
+				Log.e(MainActivity.sTAG, "Could not find correct information in the database");
 			}
 		}catch (SQLException e){
-			Log.e(MainActivity.TAG, "Either location or menu db could not be opened");
+			Log.e(MainActivity.sTAG, "Either location or menu db could not be opened");
 			e.printStackTrace();
 		} catch (JSONException e) {
-			Log.e(MainActivity.TAG, "Either location or menu db could not be opened");
+			Log.e(MainActivity.sTAG, "Either location or menu db could not be opened");
 			e.printStackTrace();
 		}
 		

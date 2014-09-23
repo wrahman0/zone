@@ -30,7 +30,7 @@ import com.wasiur.uwfood.MainActivity;
 			int curr_time_min = 60* Integer.parseInt(curr_time[0]) + Integer.parseInt(curr_time[1]);
 			return (curr_time_min >= opening_hour_min && curr_time_min <= closing_hour_min ? true : false);
 		}catch(JSONException e){
-			Log.e(MainActivity.TAG,"Time Parsing Error");
+			Log.e(MainActivity.sTAG,"Time Parsing Error");
 			return false;
 		}catch(NumberFormatException e){
 			return false;
@@ -48,7 +48,7 @@ import com.wasiur.uwfood.MainActivity;
 					return hourConversion(opening_hour) + " - " + hourConversion(closing_hour);
 				}
 			} catch (JSONException e) {
-				Log.e(MainActivity.TAG, "Could not get today's operation hours");
+				Log.e(MainActivity.sTAG, "Could not get today's operation hours");
 				e.printStackTrace();
 			}
 		}
@@ -62,7 +62,7 @@ import com.wasiur.uwfood.MainActivity;
 			Date _24HourDt = _24HourSDF.parse(_24HourTime);
 			return _12HourSDF.format(_24HourDt);
 		} catch (ParseException e) {
-			Log.e(MainActivity.TAG, "Could not parse 24 hour format time");
+			Log.e(MainActivity.sTAG, "Could not parse 24 hour format time");
 			e.printStackTrace();
 			return "";
 		}
@@ -87,7 +87,7 @@ import com.wasiur.uwfood.MainActivity;
 		case Calendar.SATURDAY:
 			return "saturday";
 		}
-		Log.e(MainActivity.TAG, "Could not determine day of the week");
+		Log.e(MainActivity.sTAG, "Could not determine day of the week");
 		return "";
 	}
 	

@@ -43,26 +43,26 @@ public class DBAdapterLocation {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			Log.i(MainActivity.TAG,"Creating " + DATABASE_TABLE + ".");
+			Log.i(MainActivity.sTAG,"Creating " + DATABASE_TABLE + ".");
 			db.execSQL(DATABASE_CREATE);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.i(MainActivity.TAG,"Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all data");
+			Log.i(MainActivity.sTAG,"Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all data");
 			db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE +";");
 			onCreate(db);
 		}
 	}
 	
 	public DBAdapterLocation open() throws SQLException {
-		Log.i(MainActivity.TAG, "OPENNING DB...");
+		Log.i(MainActivity.sTAG, "OPENNING DB...");
 		db = DBHelper.getWritableDatabase();
 		return this;
 	}
 
 	public void close(){
-		Log.i(MainActivity.TAG, "CLOSING DB...");
+		Log.i(MainActivity.sTAG, "CLOSING DB...");
 		DBHelper.close();
 	}
 	
@@ -77,7 +77,7 @@ public class DBAdapterLocation {
 	}
 	
 	public Cursor getLocation(){
-		Log.w(MainActivity.TAG, "GETTING LOCATION...");
+		Log.w(MainActivity.sTAG, "GETTING LOCATION...");
 		return  db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_LOCATION},null,null,null,null,null);
 	}
 

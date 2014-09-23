@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.uwfood"
+    package="com.wasiur.napkins"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -37,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.wasiur.uwfood.ErrorActivity"
             android:configChanges="orientation"
@@ -49,7 +48,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.wasiur.uwfood.OutletDetailsActivity"
             android:configChanges="orientation"

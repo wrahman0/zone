@@ -21,7 +21,7 @@ public class FlickrService {
 		try {
 			
 			JSONObject indivPhoto = flickrResponse.getJSONObject("photos").getJSONArray("photo").getJSONObject(0);
-			Log.i(MainActivity.TAG, "Flickr Response: " + indivPhoto.toString());
+			Log.i(MainActivity.sTAG, "Flickr Response: " + indivPhoto.toString());
 			
 			String farm_id = indivPhoto.getString("farm");
 			String server_id = indivPhoto.getString("server");
@@ -29,11 +29,11 @@ public class FlickrService {
 			String secret = indivPhoto.getString("secret");
 			
 			String finalUrl = "https://farm" + farm_id + ".staticflickr.com/" + server_id + "/" + id + "_" + secret +".jpg";
-			Log.i(MainActivity.TAG, "Flickr URL: " + finalUrl);
+			Log.i(MainActivity.sTAG, "Flickr URL: " + finalUrl);
 			return finalUrl;
 			
 		} catch (JSONException e) {
-			Log.e(MainActivity.TAG, "Could not parse flickr response");
+			Log.e(MainActivity.sTAG, "Could not parse flickr response");
 			e.printStackTrace();
 		}
 		return null;
