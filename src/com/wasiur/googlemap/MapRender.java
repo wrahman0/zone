@@ -8,6 +8,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapRender {
@@ -20,12 +21,11 @@ public class MapRender {
 	}
 
 	public static void dropMarker(GoogleMap map, LatLng latLng, String title){
-		if (!title.equals("Its me")){
-			map.addMarker( new MarkerOptions()
-			.position(latLng)
-			.title(title));
-		}
-		
+
+		map.addMarker( new MarkerOptions()
+		.position(latLng)
+		.title(title));
+
 	}
 
 	public static void setInitialLocation(Context context, final GoogleMap googleMap, String initialLocation, float initialZoom) {
@@ -37,9 +37,16 @@ public class MapRender {
 		googleMap.setMyLocationEnabled(true);
 
 		googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+			
+			Marker marker;
+			
 			@Override
 			public void onMyLocationChange(Location arg0) {
-				googleMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+				
+				if (marker!=null){
+					marker.remove();
+				}
+				marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
 			}
 		});
 

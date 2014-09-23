@@ -40,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxEms="15"
+                android:maxLength="30" 
+                android:maxLines="1"
                 android:text="Sample Dish"
                 android:textColor="@color/menuRowTextColor"
                 android:textSize="18sp" />
