@@ -70,6 +70,8 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse,
 		getActionBar().setCustomView(R.layout.actionbar_title);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		findViews();
+		
 //		mInitialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
 //		mInitialLoadProgress.setBackgroundResource(R.anim.loading_spinner);
 //		mLoadAnimation = (AnimationDrawable) mInitialLoadProgress.getBackground();
@@ -212,23 +214,20 @@ public class OutletDetailsActivity extends Activity implements OnFlickrResponse,
 
 		@Override
 		protected void onPostExecute(Void result) {
-			try{	
-				findViews();
-				setViewText();
-				initializeMap();
 
+			setViewText();
+			try{
+				initializeMap();
 				MapRender.setInitialLocation(OutletDetailsActivity.this, googleMap, initialLocation, initialZoom);
 				MapRender.dropMarker(googleMap, LocationLogic.getLatLngFromOutlet(mOutlet),	mOutlet.getOutlet_name());
-
-				RowInflater.inflateMenuItems(OutletDetailsActivity.this, menuItemsLinearLayout, mOutlet);
 //				stopProgressSpinner();
 //				mProgressContainer.setVisibility(View.GONE);
 //				mMasterContainer.setVisibility(View.VISIBLE);
-				
 			}catch(NullPointerException e){
 				Log.e(MainActivity.sTAG, "Could not initialize google maps. Likely since application was killed");
 				e.printStackTrace();
 			}
+			RowInflater.inflateMenuItems(OutletDetailsActivity.this, menuItemsLinearLayout, mOutlet);
 			super.onPostExecute(result);
 		}
 

@@ -4,27 +4,27 @@
 
     <item
         android:drawable="@drawable/spinner_0"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_1"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_2"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_3"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_4"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_5"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_6"
-        android:duration="200"/>
+        android:duration="50"/>
     <item
         android:drawable="@drawable/spinner_7"
-        android:duration="200"/>
+        android:duration="50"/>
 
 </animation-list>

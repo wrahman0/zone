@@ -24,7 +24,7 @@
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="fill_parent"
-                android:layout_height="110dp"
+                android:layout_height="80dp"
                 android:background="#F1F1F1"
                 android:paddingRight="10dp"
                 android:paddingTop="10dp" >
