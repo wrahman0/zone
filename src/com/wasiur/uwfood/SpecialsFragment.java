@@ -2,6 +2,7 @@ package com.wasiur.uwfood;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import com.wasiur.parser.Outlet;
 import com.wasiur.parser.ResponseHolder;
 import com.wasiur.render.RowInflater;
 
-public class SpecialsFragment extends Fragment{
+@SuppressLint("InflateParams") public class SpecialsFragment extends Fragment{
 	
 	private LinearLayout mScrollViewSpecialsLinearLayout;
 	private ResponseHolder mResponseHolder;
