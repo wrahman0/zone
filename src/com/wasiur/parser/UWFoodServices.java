@@ -18,11 +18,11 @@ import android.util.Log;
 
 public class UWFoodServices {
 
-	private static final String url_menu = "https://api.uwaterloo.ca/v2/foodservices/2013/12/menu.json?key=";
-	private static final String url_location = "https://api.uwaterloo.ca/v2/foodservices/locations.json?key=";
-	private static final String KEY = "1775694fa7f453e7f7605169f8d6fab1";
-	private JSONObject menu_response;
-	private JSONObject location_response;
+	private static final String sUrlMenu = "https://api.uwaterloo.ca/v2/foodservices/2013/12/menu.json?key=";
+	private static final String sUrlLocation = "https://api.uwaterloo.ca/v2/foodservices/locations.json?key=";
+	private static final String sKEY = "1775694fa7f453e7f7605169f8d6fab1";
+	private JSONObject mMenuResponse;
+	private JSONObject mLocationResponse;
 	
 	private ResponseHolder responseHolder;
 	private ParserResponse listener;
@@ -39,19 +39,19 @@ public class UWFoodServices {
 	}
 
 	public JSONObject getMenuResponse(){
-		return this.menu_response;
+		return this.mMenuResponse;
 	}
 	
 	protected void setMenuResponse(JSONObject response){
-		this.menu_response = response;
+		this.mMenuResponse = response;
 	}
 	
 	public JSONObject getLocationResponse(){
-		return this.location_response;
+		return this.mLocationResponse;
 	}
 	
 	protected void setLocationResponse(JSONObject response){
-		this.location_response = response;
+		this.mLocationResponse = response;
 	}
 	
 	public ResponseHolder getResponseHolder() {
@@ -77,7 +77,7 @@ public class UWFoodServices {
 			try {	
 				
 				//Menu Request
-				URL currURL = new URL(url_menu+KEY);
+				URL currURL = new URL(sUrlMenu+sKEY);
 				URLConnection connection = currURL.openConnection();
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				StringBuilder response = new StringBuilder();
@@ -91,7 +91,7 @@ public class UWFoodServices {
 				bufferedReader.close();
 				
 				//Location Request
-				currURL = new URL(url_location+KEY);
+				currURL = new URL(sUrlLocation+sKEY);
 				connection = currURL.openConnection();
 				BufferedReader bufferedLocationReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				response = new StringBuilder();

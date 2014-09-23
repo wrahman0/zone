@@ -22,6 +22,7 @@ import com.wasiur.napkins.R;
 import com.wasiur.parser.ParserResponse;
 import com.wasiur.parser.RequestInformation;
 import com.wasiur.parser.ResponseHolder;
+import com.wasiur.render.MainScreenRender;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener, ParserResponse{
 
@@ -45,6 +46,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
 		getActionBar().setCustomView(R.layout.actionbar_title);
+		
+		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		mInitialLoadProgress = (ImageView) findViewById(R.id.initialLoadProgress);
 		mInitialLoadProgress.setBackgroundResource(R.anim.loading_spinner);
@@ -63,8 +66,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				if (mResponseHolder == null) Log.e("NULL", "Loading Respo");
 				requestInformation.parseInformation(MainActivity.this);
 			}else{
-				mResponseHolder = requestInformation.setResponseHolder();
-				initializeTabs();
+				MainScreenRender mainScreenRender = new MainScreenRender(this, requestInformation);
+				mainScreenRender.execute();
 			}
 		}
 	} 
@@ -75,17 +78,50 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	}
 
 	public void stopProgressSpinner(){
-
 		mInitialLoadProgress.setVisibility(View.GONE);
 		mLoadAnimation.stop();
-
 	}
 
 	public void initializeTabs() {
 		//Tabs initialization
-		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mActionBar = getActionBar();
 		mAdapter = new TabsPagerAdapter (getSupportFragmentManager(),mResponseHolder);
+
+		mViewPager.setAdapter(mAdapter);
+		mActionBar.setHomeButtonEnabled(false);
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+		//Adding Tabs
+		for (String tab_name : mTabs){
+			mActionBar.addTab(mActionBar.newTab().setText(tab_name).setTabListener(this));
+		}
+
+		/**
+		 * on swiping the viewpager make respective tab selected
+		 * */
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				// on changing the page
+				// make respected tab selected
+				mActionBar.setSelectedNavigationItem(position);
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
+	}
+	
+	public void initializeTabs(ResponseHolder responseHolder) {
+		//Tabs initialization
+		mActionBar = getActionBar();
+		mAdapter = new TabsPagerAdapter (getSupportFragmentManager(),responseHolder);
 
 		mViewPager.setAdapter(mAdapter);
 		mActionBar.setHomeButtonEnabled(false);

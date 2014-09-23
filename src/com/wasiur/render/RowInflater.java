@@ -112,7 +112,7 @@ import com.wasiur.uwfood.OutletDetailsActivity;
 						//Calories
 						if (item.getCalories()!=-1){
 							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
-							cal.setText(item.getCalories());
+							cal.setText("Calories: " + item.getCalories());
 						}
 						
 						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));
@@ -131,7 +131,7 @@ import com.wasiur.uwfood.OutletDetailsActivity;
 						//Calories
 						if (item.getCalories()!=-1){
 							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
-							cal.setText(String.valueOf(item.getCalories()));
+							cal.setText("Calories: " + item.getCalories());
 						}
 						
 						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));
@@ -150,7 +150,7 @@ import com.wasiur.uwfood.OutletDetailsActivity;
 						//Calories
 						if (item.getCalories()!=-1){
 							TextView cal = (TextView) view.findViewById(R.id.menuItemCalories);
-							cal.setText(String.valueOf(item.getCalories()));
+							cal.setText("Calories: " + item.getCalories());
 						}
 						
 						FlickrService.loadFlickrImage(item.getProductName(),(OnFlickrResponse) context, (ImageView) view.findViewById(R.id.menuItemImage));

@@ -5,4 +5,5 @@ public interface ParserResponse {
 	void stopProgressSpinner();
 	void startProgressSpinner();
 	void initializeTabs();
+	void initializeTabs(ResponseHolder responseHolder);
 }
