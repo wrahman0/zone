@@ -2,7 +2,7 @@
 <resources>
 
     <!-- App -->
-    <string name="app_name">UWFood</string>
+    <string name="app_name">Napkins</string>
     
     <!-- Tabs -->
     <string name="tab_text_outlet">Outlets</string>
